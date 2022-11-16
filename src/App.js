@@ -255,10 +255,6 @@ class App extends React.Component {
 
                   <Route path="/blogs/:id" component={() => <SingleBlog />} />
 
-                  {/* <Route path="/account">
-                      <Account />
-                    </Route> */}
-
                   <Protected path="/account" component={() => <Account />} />
 
                   <Protected path="/wallet" component={wallet} />

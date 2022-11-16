@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Blog.scss";
 import { Grid } from "semantic-ui-react";
 import SingleBlog from "./SingleBlog";
 import { data } from "./data";
+import axios from "axios";
+import moment from "moment";
 
 const Blog = () => {
+  const [blogList, setBlogList] = useState([]);
+
+  const getBlog = () => {
+    axios
+      .get(process.env.REACT_APP_BACKEND_HOST + "/storefront/blog_list")
+      .then((res) => {
+        setBlogList(res.data?.results);
+      })
+      .catch((err) => console.log("Blog Error", err));
+  };
+
+  console.log("blogList", blogList);
+
+  useEffect(() => {
+    getBlog();
+  }, []);
   return (
     <div className="blog-container">
       <div className="header">
@@ -14,26 +32,28 @@ const Blog = () => {
       </div>
 
       <Grid container centered columns={3}>
-        {data?.map((item) => (
-          <Grid.Column mobile={16} tablet={8} computer={5}>
-            <Link to={`/blogs/${item.id}`}>
+        {blogList?.map((item, index) => (
+          <Grid.Column key={index} mobile={16} tablet={8} computer={5}>
+            <Link to={`/blogs/${item.handle}`}>
               <div class="ui cards">
                 <div class="card">
-                  <img src={item.img} />
+                  <img src={item.thumbnail_image} />
 
                   <div class="content">
                     <div className="upper-content">
                       <div className="tag">{item.tag}</div>
-                      <div className="date">{item.date}</div>
+                      <div className="date">
+                        {moment(item?.published_at).format("LL")}
+                      </div>
                     </div>
                     <div className=" mid-content">
-                      <Link class="header" to={`/blog/${item.id}`}>
+                      <Link class="header" to={`/blogs/${item.handle}`}>
                         {item.title}
                       </Link>
-                      <div class="desc">{item.desc}</div>
+                      <div class="desc">{item.content}</div>
                     </div>
                     <div class="lower-content">
-                      <Link to={`/blog/${item.id}`}>
+                      <Link to={`/blogs/${item.handle}`}>
                         Read more <i class="angle right icon"></i>
                       </Link>
                     </div>
