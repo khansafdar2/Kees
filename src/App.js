@@ -249,7 +249,7 @@ class App extends React.Component {
                     <Signup />
                   </Route>
 
-                  <Route path="/blog">
+                  <Route path="/blog/:category_id?">
                     <Blog />
                   </Route>
 
