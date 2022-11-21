@@ -126,7 +126,7 @@ const Blog = () => {
           ))}
         </Grid>
       ) : (
-        <KeesLoader />
+        <p className="no-blog">No Blogs Available</p>
       )}
 
       {blogList.length === 0 && <p className="no-blog">No Blogs Available</p>}
