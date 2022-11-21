@@ -131,7 +131,7 @@ const Blog = () => {
 
       {blogList.length === 0 && <p className="no-blog">No Blogs Available</p>}
 
-      {showNextBtn && (
+      {showNextBtn && blogList?.length >= 6 && (
         <div className="next-button">
           <button
             class="ui button"
