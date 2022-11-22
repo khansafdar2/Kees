@@ -60,7 +60,7 @@
           overflow: hidden;
           text-overflow: ellipsis;
           display: -webkit-box;
-          max-height: 66px; /* fallback */
+          max-height: 64px; /* fallback */
           -webkit-line-clamp: 3; /* number of lines to show */
           -webkit-box-orient: vertical;
         }

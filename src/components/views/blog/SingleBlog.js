@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { data } from "./data";
 import "./SingleBlog.scss";
 import { useParams } from "react-router";
 import axios from "axios";

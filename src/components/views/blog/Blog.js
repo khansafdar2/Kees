@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import "./Blog.scss";
 import { Grid } from "semantic-ui-react";
 import SingleBlog from "./SingleBlog";
-import { data } from "./data";
 import axios from "axios";
 import moment from "moment";
 import Parser from "html-react-parser";
@@ -14,6 +13,7 @@ const Blog = () => {
   const [activePageIndex, setActivePageIndex] = useState(1);
   const [activeCatPageIndex, setActiveCatPageIndex] = useState(1);
   const [showNextBtn, setShowNextBtn] = useState(true);
+  const [showNoBlog, setShowNoBlog] = useState(false);
   const [blogCategory, setBlogCategory] = useState(null);
 
   const { category_id } = useParams();
@@ -27,6 +27,11 @@ const Blog = () => {
       .then((res) => {
         setBlogList(res.data?.results);
         setActivePageIndex(activePageIndex + 1);
+        if (res.data?.results.length === 0) {
+          setTimeout(() => {
+            setShowNoBlog(true);
+          }, 1000);
+        }
       })
       .catch((err) => {
         console.log("Blog Error", err);
@@ -84,7 +89,7 @@ const Blog = () => {
         <h1 className="blog-heading">Blog</h1>
         <p className="blog-subheading">Welcome to the Kees Blog</p>
       </div>
-      {blogList.length > 0 ? (
+      {!showNoBlog ? (
         <Grid container centered columns={3}>
           {blogList?.map((item, index) => (
             <Grid.Column key={index} mobile={16} tablet={8} computer={5}>
@@ -129,7 +134,9 @@ const Blog = () => {
         <p className="no-blog">No Blogs Available</p>
       )}
 
-      {blogList.length === 0 && <p className="no-blog">No Blogs Available</p>}
+      {blogList?.length === 0 && !showNextBtn && (
+        <p className="no-blog">No Blogs Available</p>
+      )}
 
       {showNextBtn && blogList?.length >= 6 && (
         <div className="next-button">
