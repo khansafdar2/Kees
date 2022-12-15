@@ -128,7 +128,7 @@ class BrandsPage extends React.Component {
           <h1>Shop By Brands</h1>
 
           <div className="brand-search">
-            <div class="ui input">
+            <div className="ui input">
               <input type="text" value={this.state.query} onChange={this.onInputchange} placeholder="Search brands..." />
               <Button className="search-btn" icon onClick={this.searchBrand} >
                 <Icon name={"search"} />

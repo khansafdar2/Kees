@@ -3,42 +3,40 @@ import Slider from "react-slick";
 import ProductCard from '../../../shared/ProductCard';
 import arrowLeft from '../../../../assets/svg/arrowLeft.svg';
 import arrowRight from '../../../../assets/svg/arrowRight.svg';
-// import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 // import {sliderSettings} from '../services/context'
 import { isMobile } from 'react-device-detect';
 
 class Slider1 extends React.Component {
   // state = {  }
 
-  constructor(props)
-  {
+  constructor(props) {
     super(props)
-    
+
     this.state = {
-      products : props.products,
-      showSlider : true,
-      catHandle : props.catHandle
+      products: props.products,
+      showSlider: true,
+      catHandle: props.catHandle
     }
   }
-  
-  componentDidUpdate(){
-    
-    if(this.props.products != this.state.products)
-    {
+
+  componentDidUpdate() {
+
+    if (this.props.products !== this.state.products) {
       this.setState({
-        products : this.props.products,
+        products: this.props.products,
         showSlider: false,
-        catHandle : this.props.catHandle
+        catHandle: this.props.catHandle
       }, () => this.setState({ showSlider: true }))
     }
   }
 
-  render() { 
- 
+  render() {
+
     const sliderSettings = {
       speed: 500,
       slidesToShow: 6,
-      autoplay:true,
+      autoplay: true,
       autoplayspeed: 2500,
       slidesToScroll: 1,
       arrows: true,
@@ -77,37 +75,33 @@ class Slider1 extends React.Component {
       ]
     };
 
-    const {products, showSlider} = this.state
+    const { products, showSlider } = this.state
 
-    if(isMobile)
-    {
-      if (products.length > 2 )
-      {
+    if (isMobile) {
+      if (products.length > 2) {
         sliderSettings.infinite = true
       }
     }
     else {
-      if (products.length > 6 )
-      {
+      if (products.length > 6) {
         sliderSettings.infinite = true
       }
     }
 
-
-    return ( 
+    return (
       <div>
         {
-          showSlider ? 
-            <Slider {...sliderSettings}> 
-            {
-              products.length ? 
-              products.map( (pro,key)=> {
-              return <ProductCard product={pro} key={key}/>
-              })
-              : null
+          showSlider ?
+            <Slider {...sliderSettings}>
+              {
+                products.length ?
+                  products.map((pro, key) => {
+                    return <Link to={this.state.catHandle} key={key}><ProductCard product={pro} key={key} /></Link>
+                  })
+                  : null
+              }
 
-            }
-            {/* <Link to={'/collection/'+ this.state.catHandle}>
+              {/* <Link to={'/collection/'+ this.state.catHandle}>
               
               <div className="view-all-card">
                 <div className="product-card-inner-wrapper">
@@ -115,14 +109,13 @@ class Slider1 extends React.Component {
                 </div>
               </div>
             </Link>   */}
-            
-            
+
             </Slider>
-          : null  
+            : null
         }
       </div>
-     );
+    );
   }
 }
- 
+
 export default Slider1;

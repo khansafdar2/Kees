@@ -16,7 +16,7 @@ class CategoryCard extends React.Component {
   // debugger
 
   componentDidUpdate() {
-    if (this.state.cat != this.props.cat) {
+    if (this.state.cat !== this.props.cat) {
       this.setState({ cat: this.props.cat })
     }
 

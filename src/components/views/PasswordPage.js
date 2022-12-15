@@ -4,36 +4,36 @@ import Axios from 'axios'
 import { Helmet } from "react-helmet";
 
 class PasswordPage extends React.Component {
-  state = { 
+  state = {
     passwordChecked: false
-   }
+  }
 
   checkPassword = () => {
     var val = document.getElementById("store-password").value
-     Axios.post(process.env.REACT_APP_BACKEND_HOST + '/storefront/check_password', {
+    Axios.post(process.env.REACT_APP_BACKEND_HOST + '/storefront/check_password', {
       password: val
-     })
-     .then((res) => {
+    })
+      .then((res) => {
         // console.log(res.data)
         this.props.changePasswordEnabledState()
         sessionStorage.setItem('passwordMatched', 'true');
         this.setState({
           passwordChecked: true
         })
-     })
-     .catch((err) => {
-       console.log(err)
+      })
+      .catch((err) => {
+        console.log(err)
         document.getElementsByClassName("error-message")[0].style.display = 'block'
-     })
+      })
   }
 
-  render() { 
-    return ( 
+  render() {
+    return (
       <div className='password-page'>
         <Helmet>
-                <title>Password | KEES</title>
-                <meta name='description' content=''/>
-                <meta name='keyword' content=''/>  
+          <title>Password | KEES</title>
+          <meta name='description' content='' />
+          <meta name='keyword' content='' />
         </Helmet>
         <Form>
           <Form.Field>
@@ -44,8 +44,8 @@ class PasswordPage extends React.Component {
           <p className='error-message'>Wrong password</p>
         </Form>
       </div>
-     );
+    );
   }
 }
- 
+
 export default PasswordPage;

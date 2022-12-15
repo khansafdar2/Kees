@@ -42,7 +42,6 @@ class ProductCard extends React.Component {
 
     window.dataLayer = window.dataLayer || [];
 
-
     // window.dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
     // window.dataLayer.push({
     //   'event': 'select_item',
@@ -69,6 +68,7 @@ class ProductCard extends React.Component {
     //   //  }
     // });
     // debugger
+
     window.dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
     window.dataLayer.push({
       'event': 'productClick',
@@ -130,7 +130,7 @@ class ProductCard extends React.Component {
           <div onClick={() => { this.productClicks(productObjectGA) }} className='product-card-inner-wrapper'>
             {saleTag}
             {
-              product.sold_out == true ?
+              product.sold_out === true ?
                 <div className="soldTag">
                   <span>
                     sold out

@@ -46,7 +46,7 @@ class CollectionPage extends React.Component {
     // debugger;
     if (
       this.props.match.path.includes("promotions") &&
-      this.state.promotions == false
+      this.state.promotions === false
     ) {
       this.setState(
         {
@@ -65,7 +65,7 @@ class CollectionPage extends React.Component {
       );
     } else if (
       this.props.match.path.includes("vendor") &&
-      this.state.handle != this.props.match.params.handle
+      this.state.handle !== this.props.match.params.handle
     ) {
       // debugger;
       this.setState(
@@ -83,7 +83,7 @@ class CollectionPage extends React.Component {
       );
     } else if (
       this.props.match.params.handle &&
-      this.state.handle != this.props.match.params.handle &&
+      this.state.handle !== this.props.match.params.handle &&
       !window.location.href.includes("promotions")
     ) {
       // debugger;
@@ -344,15 +344,15 @@ class CollectionPage extends React.Component {
                 <div className="toolbar">
                   <div className="breadcrumbs">
                     <p>
-                      Home /{" "}
+                      Home /
                       {this.state.productsFrom.includes("brand")
                         ? "Brand / "
                         : this.state.promotions
                           ? "Promotions "
                           : this.state.vendor
                             ? "Vendor / "
-                            : "Category /"}{" "}
-                      <span> {this.state.handle} </span>{" "}
+                            : "Category /"}
+                      <span> {this.state.handle} </span>
                     </p>
                   </div>
                   <button

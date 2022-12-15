@@ -92,7 +92,7 @@ class VenderPage extends Component {
       cancelCheck,
     } = this.state
 
-    if (formComplete == true) {
+    if (formComplete === true) {
       let data = {
         name: firstName + ' ' + lastName,
         email: email,
@@ -131,7 +131,7 @@ class VenderPage extends Component {
           //handle error
 
           console.log(response)
-          if (response.request.status == 400) {
+          if (response.request.status === 400) {
             console.log('User already registed')
             this.setState({
               showErrorMsg: true,
@@ -148,7 +148,7 @@ class VenderPage extends Component {
   step = () => {
     // debugger
 
-    if (this.state.activeIndex == 1) {
+    if (this.state.activeIndex === 1) {
       if (
         this.state.firstName &&
         this.state.lastName &&
@@ -158,7 +158,7 @@ class VenderPage extends Component {
         this.setState({ activeIndex: this.state.activeIndex + 1 })
       }
     }
-    if (this.state.activeIndex == 2) {
+    if (this.state.activeIndex === 2) {
       if (
         this.state.storeName &&
         this.state.companyName &&
@@ -168,12 +168,12 @@ class VenderPage extends Component {
         this.setState({ activeIndex: this.state.activeIndex + 1 })
       }
     }
-    if (this.state.activeIndex == 3) {
+    if (this.state.activeIndex === 3) {
       if (this.state.tradeLicense && this.state.nationalId) {
         this.setState({ activeIndex: this.state.activeIndex + 1 })
       }
     }
-    if (this.state.activeIndex == 4) {
+    if (this.state.activeIndex === 4) {
       if (
         this.state.beneficiaryName &&
         this.state.bankName &&
@@ -204,7 +204,7 @@ class VenderPage extends Component {
         [name]: value,
       },
       () => {
-        if (name == 'email') {
+        if (name === 'email') {
           let ifEmail = this.validateEmail(this.state[name])
           if (!ifEmail) {
             this.setState({
@@ -217,7 +217,7 @@ class VenderPage extends Component {
           }
         }
 
-        if (name == 'firstName') {
+        if (name === 'firstName') {
           let ifIncludesNumber = this.ifIncludesNumber(value)
           if (ifIncludesNumber) {
             this.setState({
@@ -229,7 +229,7 @@ class VenderPage extends Component {
             })
           }
         }
-        if (name == 'lastName') {
+        if (name === 'lastName') {
           let ifIncludesNumber = this.ifIncludesNumber(value)
           if (ifIncludesNumber) {
             this.setState({
@@ -242,7 +242,7 @@ class VenderPage extends Component {
           }
         }
 
-        if (name == 'phone') {
+        if (name === 'phone') {
           if (value.length < 8) {
             this.setState({
               phoneError: {
@@ -256,12 +256,12 @@ class VenderPage extends Component {
         // debugger
 
         if (
-          name == 'lastName' ||
-          name == 'firstName' ||
-          name == 'email' ||
-          name == 'phone'
+          name === 'lastName' ||
+          name === 'firstName' ||
+          name === 'email' ||
+          name === 'phone'
         ) {
-          if (value == '') {
+          if (value === '') {
             this.setState({
               stepComplete: false,
             })
@@ -284,8 +284,8 @@ class VenderPage extends Component {
         [name]: value,
       },
       () => {
-        if (name == 'beneficiaryName') {
-          if (value != '') {
+        if (name === 'beneficiaryName') {
+          if (value !== '') {
             this.setState({
               beneficiaryName: value,
             })
@@ -300,8 +300,8 @@ class VenderPage extends Component {
           }
         }
 
-        if (name == 'bankName') {
-          if (value != '') {
+        if (name === 'bankName') {
+          if (value !== '') {
             this.setState({
               bankName: value,
             })
@@ -316,8 +316,8 @@ class VenderPage extends Component {
           }
         }
 
-        if (name == 'branchName') {
-          if (value != '') {
+        if (name === 'branchName') {
+          if (value !== '') {
             this.setState({
               branchName: value,
             })
@@ -332,8 +332,8 @@ class VenderPage extends Component {
           }
         }
 
-        if (name == 'accountNumber') {
-          if (value != '') {
+        if (name === 'accountNumber') {
+          if (value !== '') {
             this.setState({
               accountNumber: value,
             })
@@ -348,8 +348,8 @@ class VenderPage extends Component {
           }
         }
 
-        if (name == 'ibanNumber') {
-          if (value != '') {
+        if (name === 'ibanNumber') {
+          if (value !== '') {
             this.setState({
               ibanNumber: value,
             })
@@ -364,8 +364,8 @@ class VenderPage extends Component {
           }
         }
 
-        if (name == 'swiftCode') {
-          if (value != '') {
+        if (name === 'swiftCode') {
+          if (value !== '') {
             this.setState({
               swiftCode: value,
             })
@@ -380,8 +380,8 @@ class VenderPage extends Component {
           }
         }
 
-        if (name == 'cancelCheck') {
-          if (value != '') {
+        if (name === 'cancelCheck') {
+          if (value !== '') {
             this.setState({
               cancelCheck: value,
             })
@@ -397,15 +397,15 @@ class VenderPage extends Component {
         }
 
         if (
-          name == 'beneficiaryName' ||
-          name == 'bankName' ||
-          name == 'branchName' ||
-          name == 'accountNumber' ||
-          name == 'ibanNumber' ||
-          name == 'swiftCode' ||
-          name == 'cancelCheck'
+          name === 'beneficiaryName' ||
+          name === 'bankName' ||
+          name === 'branchName' ||
+          name === 'accountNumber' ||
+          name === 'ibanNumber' ||
+          name === 'swiftCode' ||
+          name === 'cancelCheck'
         ) {
-          if (value == '') {
+          if (value === '') {
             this.setState({
               stepComplete: false,
             })
@@ -430,8 +430,8 @@ class VenderPage extends Component {
     //     [name]: value
     // }, () => {
 
-    //     if (name == "storeName") {
-    //         if (value != '') {
+    //     if (name ==="storeName") {
+    //         if (value !=='') {
     //             this.setState({
     //                 storeName: value
     //             })
@@ -447,8 +447,8 @@ class VenderPage extends Component {
     //         }
     //     }
 
-    //     if (name == "companyName") {
-    //         if (value != '') {
+    //     if (name ==="companyName") {
+    //         if (value !=='') {
     //             this.setState({
     //                 companyName: value
     //             })
@@ -464,8 +464,8 @@ class VenderPage extends Component {
     //         }
     //     }
 
-    //     if (name == "productsYouSell") {
-    //         if (value != '') {
+    //     if (name ==="productsYouSell") {
+    //         if (value !=='') {
     //             this.setState({
     //                 productsYouSell: value
     //             })
@@ -481,8 +481,8 @@ class VenderPage extends Component {
     //         }
     //     }
 
-    //     if (name == "address") {
-    //         if (value != '') {
+    //     if (name ==="address") {
+    //         if (value !=='') {
     //             this.setState({
     //                 address: value
     //             })
@@ -498,8 +498,8 @@ class VenderPage extends Component {
     //         }
     //     }
 
-    //     if (name == "storeName" || name == 'companyName' || name == 'productsYouSell' || name == 'address') {
-    //         if (value == '') {
+    //     if (name ==="storeName" || name ==='companyName' || name ==='productsYouSell' || name ==='address') {
+    //         if (value ==='') {
     //             this.setState({
     //                 stepComplete: false
     //             })
@@ -657,7 +657,7 @@ class VenderPage extends Component {
           </div>
 
           <Form error={showFormError} onSubmit={this.signup}>
-            {activeIndex == 1 ? (
+            {activeIndex === 1 ? (
               <>
                 <div>
                   <Form.Input
@@ -712,7 +712,7 @@ class VenderPage extends Component {
               </>
             ) : null}
 
-            {activeIndex == 2 ? (
+            {activeIndex === 2 ? (
               <>
                 <Form.Input
                   fluid
@@ -776,7 +776,7 @@ class VenderPage extends Component {
               </>
             ) : null}
 
-            {activeIndex == 3 ? (
+            {activeIndex === 3 ? (
               <>
                 <div className='step-form-input'>
                   <Form.Input
@@ -800,8 +800,8 @@ class VenderPage extends Component {
                     accept='image/png, image/jpg, image/jpeg, .pdf, .doc, .docx'
                   />
                   <label htmlFor='selectfile' className='browse-btn'>
-                    {' '}
-                    BROWSE FILES{' '}
+
+                    BROWSE FILES
                   </label>
 
                   <Form.Input
@@ -824,8 +824,8 @@ class VenderPage extends Component {
                     accept='image/png, image/jpg, image/jpeg, .pdf, .doc, .docx'
                   />
                   <label htmlFor='selectfile1' className='browse-btn'>
-                    {' '}
-                    BROWSE FILES{' '}
+
+                    BROWSE FILES
                   </label>
                 </div>
 
@@ -849,7 +849,7 @@ class VenderPage extends Component {
               </>
             ) : null}
 
-            {activeIndex == 4 ? (
+            {activeIndex === 4 ? (
               <>
                 <Form.Input
                   fluid
@@ -926,8 +926,8 @@ class VenderPage extends Component {
                   accept='image/png, image/jpg, image/jpeg, .pdf'
                 />
                 <label htmlFor='selectfile2' className='browse-btn'>
-                  {' '}
-                  BROWSE FILES{' '}
+
+                  BROWSE FILES
                 </label>
                 <span>{cancelCheck.name}</span>
                 {this.state.showErrorMsg && (
@@ -951,7 +951,7 @@ class VenderPage extends Component {
             ) : null}
           </Form>
 
-          {activeIndex == 5 ? (
+          {activeIndex === 5 ? (
             <>
               <div className='thanku-page'>
                 <img src={ThankuImg} alt='' />
@@ -969,7 +969,7 @@ class VenderPage extends Component {
                     seller@kees.qa
                   </p>
                   <p>
-                    Back to{' '}
+                    Back to
                     <span className='kees-text'>
                       <Link to='/'>Kees.qa</Link>
                     </span>

@@ -25,8 +25,8 @@ export default class ThankyouPage extends Component {
     if (this.state.checkoutID) {
       Axios.get(
         process.env.REACT_APP_BACKEND_HOST +
-          '/order/checkout_thankyou/' +
-          this.state.orderNo
+        '/order/checkout_thankyou/' +
+        this.state.orderNo
       ).then((response) => {
         this.setState({
           loading: false,
@@ -126,7 +126,7 @@ export default class ThankyouPage extends Component {
                               <p>
                                 {detail.shipping_address.apartment
                                   ? detail.shipping_address.apartment
-                                  : null}{' '}
+                                  : null}
                                 {detail.shipping_address.address}
                               </p>
                               <p>{detail.shipping_address.city}</p>
@@ -157,7 +157,7 @@ export default class ThankyouPage extends Component {
                               <p>
                                 {detail.billing_address.apartment
                                   ? detail.billing_address.apartment
-                                  : null}{' '}
+                                  : null}
                                 {detail.billing_address.address}
                               </p>
                               <p>{detail.billing_address.city}</p>
@@ -197,16 +197,16 @@ export default class ThankyouPage extends Component {
                                         alt={item.product}
                                       />
                                       <span className='line-item-quant'>
-                                        {' '}
-                                        {item.quantity}{' '}
+
+                                        {item.quantity}
                                       </span>
                                     </div>
                                     <div className='cart__lineitem-info-wrap'>
-                                      <div class='cart__lineitem-info'>
+                                      <div className='cart__lineitem-info'>
                                         <h5>{item.product}</h5>
                                         <p>{item.variant_name}</p>
                                       </div>
-                                      <div class='cart__lineitem-price'>
+                                      <div className='cart__lineitem-price'>
                                         <h5>QAR {item.price}</h5>
                                         <p>Shipping: {item.shipping}</p>
                                       </div>

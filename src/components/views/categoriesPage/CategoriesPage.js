@@ -2,7 +2,7 @@ import React from 'react'
 import CategoryCard from './sections/CategoryCard'
 import PageBanner from '../../shared/PageBanner'
 import Axios from 'axios'
-import { Loader } from 'semantic-ui-react'
+// import { Loader } from 'semantic-ui-react'
 import { Helmet } from "react-helmet";
 
 class CategoriesPage extends React.Component {
@@ -46,7 +46,7 @@ class CategoriesPage extends React.Component {
 
   componentDidUpdate() {
 
-    if (this.props.match.params.catHandle != this.state.catHandle) {
+    if (this.props.match.params.catHandle !== this.state.catHandle) {
       this.setState({ catHandle: this.props.match.params.catHandle }, () => { this.fetchData() })
     }
   }

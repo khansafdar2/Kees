@@ -95,10 +95,10 @@ class ProductPage extends React.Component {
         if (response.data.images) {
           let count = 0
           if (response.data.images.length) {
-            response.data.images.map((pro) => {
+            response.data.images.map((pro, index) => {
               panes.push({
                 render: () => (
-                  <Tab.Pane>
+                  <Tab.Pane key={index}>
                     {pro.cdn_link.includes('.mp4') ? (
                       <video
                         width='100%'
@@ -276,7 +276,7 @@ class ProductPage extends React.Component {
   }
 
   componentDidUpdate(prevState, prevProps) {
-    if (this.props.handle != this.state.handle) {
+    if (this.props.handle !== this.state.handle) {
       this.setState({ handle: this.props.handle }, () => this.fetchProduct())
       window.scrollTo(0, 0)
     }
@@ -348,7 +348,7 @@ class ProductPage extends React.Component {
     optionsTitle = optionsTitle.substring(0, optionsTitle.length - 1)
     let variantExist = false
     this.state.product.variants.map((variant) => {
-      if (variant.title.toLowerCase().replace(/\s+/g, '') == optionsTitle) {
+      if (variant.title.toLowerCase().replace(/\s+/g, '') === optionsTitle) {
         variantExist = true
         this.setState({
           selected_variant: variant,
@@ -369,7 +369,7 @@ class ProductPage extends React.Component {
       content_ids: [this.state.product.id],
       content_name: this.state.product.title,
       content_category: this.state.product.category,
-      value: this.state.product?.variants[0].price.original_price,
+      value: this.state.product?.variants[0].price?.original_price,
       currency: 'QAR',
     })
 
@@ -406,14 +406,14 @@ class ProductPage extends React.Component {
     let productDetail = {
       title: product.title,
       brand: product.brand,
-      variantId: this.state.selected_variant.id,
+      variantId: this.state?.selected_variant?.id,
 
       image: productImg,
       quantity: document.getElementById('quantity').value,
-      variantPrice: this.state.selected_variant.price,
-      variantTitle: this.state.selected_variant.title,
-      productHandle: this.state.handle,
-      inventoryQuantity: this.state.selected_variant.inventory_quantity,
+      variantPrice: this.state?.selected_variant?.price,
+      variantTitle: this.state?.selected_variant?.title,
+      productHandle: this.state?.handle,
+      inventoryQuantity: this.state?.selected_variant?.inventory_quantity,
       vendor_id: product.vendor_id,
     }
 
@@ -444,7 +444,7 @@ class ProductPage extends React.Component {
       this.props.dispatch(
         Add_to_cart([
           {
-            varId: productDetail.variantId,
+            varId: productDetail?.variantId,
             detail: productDetail,
           },
         ])
@@ -453,7 +453,7 @@ class ProductPage extends React.Component {
     } else {
       let cart = [
         {
-          varId: productDetail.variantId,
+          varId: productDetail?.variantId,
           detail: productDetail,
         },
       ]
@@ -469,14 +469,14 @@ class ProductPage extends React.Component {
 
     if (cartTotal) {
       let varPrice =
-        parseInt(productDetail.quantity) *
-        parseInt(productDetail.variantPrice.original_price)
+        parseInt(productDetail?.quantity) *
+        parseInt(productDetail?.variantPrice?.original_price)
       localStorage.setItem('cartTotal', cartTotal + varPrice)
     } else {
       localStorage.setItem(
         'cartTotal',
-        parseInt(productDetail.quantity) *
-        parseInt(productDetail.variantPrice.original_price)
+        parseInt(productDetail?.quantity) *
+        parseInt(productDetail?.variantPrice?.original_price)
       )
     }
 
@@ -495,9 +495,9 @@ class ProductPage extends React.Component {
 
     for (let i = 0; i < cart.length; i++) {
       const lineitem = cart[i]
-      totalCount += parseInt(lineitem.detail.quantity)
+      totalCount += parseInt(lineitem?.detail?.quantity)
       totalprice +=
-        lineitem.detail.variantPrice.original_price * lineitem.detail.quantity
+        lineitem?.detail?.variantPrice?.original_price * lineitem?.detail?.quantity
     }
 
     let quant = document.querySelector('.cart-total-quantity')
@@ -575,7 +575,7 @@ class ProductPage extends React.Component {
                   <div className='product-details'>
                     <div className='product-details-inner'>
                       <div className='pro-detail-wrapper'>
-                        <h2 className='pro-title'>{product.title}</h2>
+                        <h2 className='pro-title'>{product?.title}</h2>
                         {/* <div className="k-row"> */}
                         <div className='pro-sku k-row'>
                           <h5>SKU</h5>
@@ -585,7 +585,7 @@ class ProductPage extends React.Component {
                               : null}
                           </p>
                         </div>
-                        {product.warranty ? (
+                        {product?.warranty ? (
                           <div className='pro-warranty k-row'>
                             <h5>Warranty</h5>
                             <p>{product.warranty}</p>
@@ -622,25 +622,24 @@ class ProductPage extends React.Component {
                         <div className='price-and-whatsapp'>
                           <div className='pro-price k-row'>
                             <h5>Price</h5>
-                            {selected_variant.price ? (
+                            {selected_variant?.price ? (
                               <p>
-                                {selected_variant.price.original_price <
-                                  selected_variant.price.compare_price ? (
+                                {selected_variant?.price?.original_price <
+                                  selected_variant?.price?.compare_price ? (
                                   <>
-                                    {' '}
                                     <span className='compare-at-price'>
-                                      QAR {selected_variant.price.compare_price}
+                                      QAR {selected_variant?.price?.compare_price}
                                     </span>
                                     <span className='original-price'>
-                                      QAR{' '}
-                                      {selected_variant.price.original_price}
-                                    </span>{' '}
+                                      QAR
+                                      {selected_variant?.price?.original_price}
+                                    </span>
                                   </>
                                 ) : (
                                   <>
                                     <span className=''>
-                                      QAR{' '}
-                                      {selected_variant.price.original_price}
+                                      QAR
+                                      {selected_variant?.price?.original_price}
                                     </span>
                                   </>
                                 )}
@@ -730,39 +729,39 @@ class ProductPage extends React.Component {
                               ? product.options.map((opt, index) => {
                                 index++
                                 return (
-                                  <>
-                                    <div
-                                      className={
-                                        'swatch-option-wrap swatch-option-' +
-                                        index
-                                      }
-                                    >
-                                      <h5>{opt.name}</h5>
-                                      <div className='swatch-options k-row'>
-                                        {opt.values
-                                          .split(',')
-                                          .reverse()
-                                          .map((val) => {
-                                            return (
-                                              <>
-                                                <div
-                                                  onClick={
-                                                    this.changeSelectedVariant
-                                                  }
-                                                  className='swatch'
-                                                  option={'option' + index}
-                                                  value={val
-                                                    .toLowerCase()
-                                                    .replace(/\s+/g, '')}
-                                                >
-                                                  <p>{val}</p>
-                                                </div>
-                                              </>
-                                            )
-                                          })}
-                                      </div>
+
+                                  <div
+                                    className={
+                                      'swatch-option-wrap swatch-option-' +
+                                      index
+                                    }
+                                    key={index}
+                                  >
+                                    <h5>{opt.name}</h5>
+                                    <div className='swatch-options k-row'>
+                                      {opt.values
+                                        .split(',')
+                                        .reverse()
+                                        .map((val, index) => {
+                                          return (
+                                            <div
+                                              key={index}
+                                              onClick={
+                                                this.changeSelectedVariant
+                                              }
+                                              className='swatch'
+                                              option={'option' + index}
+                                              value={val
+                                                .toLowerCase()
+                                                .replace(/\s+/g, '')}
+                                            >
+                                              <p>{val}</p>
+                                            </div>
+                                          )
+                                        })}
                                     </div>
-                                  </>
+                                  </div>
+
                                 )
                               })
                               : null}
@@ -787,14 +786,14 @@ class ProductPage extends React.Component {
                         <div className='k-row add-to-cart-wrapper'>
                           {this.state.showSoldout ? (
                             <>
-                              {' '}
+
                               <Button
                                 className='add-to-cart'
                                 basic
                                 onClick={this.addToCart}
                                 disabled
                               >
-                                {' '}
+
                                 Sold Out
                               </Button>
                               <Button
@@ -806,18 +805,18 @@ class ProductPage extends React.Component {
                                 Buy It Now
                               </Button>
                             </>
-                          ) : this.state.selected_variant.id &&
-                            this.state.selected_variant.inventory_quantity >
+                          ) : this.state?.selected_variant?.id &&
+                            this.state?.selected_variant?.inventory_quantity >
                             0 ? (
                             <>
-                              {' '}
+
                               <Button
                                 id='AddToCart'
                                 className='add-to-cart'
                                 basic
                                 onClick={this.addToCart}
                               >
-                                {' '}
+
                                 Add to Cart
                               </Button>
                               <Button
@@ -830,14 +829,14 @@ class ProductPage extends React.Component {
                             </>
                           ) : (
                             <>
-                              {' '}
+
                               <Button
                                 className='add-to-cart'
                                 basic
                                 onClick={this.addToCart}
                                 disabled
                               >
-                                {' '}
+
                                 Sold Out
                               </Button>
                               <Button
@@ -895,7 +894,7 @@ class ProductPage extends React.Component {
                                 <rect width='10' height='10' fill='white' />
                               </clipPath>
                             </defs>
-                          </svg>{' '}
+                          </svg>
                           |
                         </TwitterShareButton>
                         <LinkedinShareButton
@@ -946,12 +945,12 @@ class ProductPage extends React.Component {
             )}
           </div>
         </div>
-        {this.state.product.title ? (
-          this.state.product.related_products.length ? (
+        {this.state?.product.title ? (
+          this.state?.product?.related_products.length ? (
             <CollectionSlider data={relatedProducts} />
           ) : null
         ) : null}
-        {this.state.visitedProducts.length ? (
+        {this.state?.visitedProducts?.length ? (
           <CollectionSlider data={visitedProducts} />
         ) : null}
       </div>

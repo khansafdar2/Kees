@@ -32,7 +32,7 @@ class Search extends Component {
   componentDidUpdate() {
 
     // debugger
-    if (this.state.query != this.props.match.params.q) {
+    if (this.state.query !== this.props.match.params.q) {
       this.setState(
         {
           query: this.props.match.params.q,
@@ -144,7 +144,7 @@ class Search extends Component {
               <div className="toolbar">
                 <div className="breadcrumbs">
                   <p>
-                    Home / Search / <span> {this.state.query} </span>{" "}
+                    Home / Search / <span> {this.state.query} </span>
                     {console.log(this.state.query)}
                   </p>
                 </div>
@@ -223,7 +223,7 @@ class Search extends Component {
                     })
                   ) : (
                     <div className="no-search-results">
-                      {" "}
+
                       <h3>No Search Results</h3>
                     </div>
                   )}

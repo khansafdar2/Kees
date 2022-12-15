@@ -19,7 +19,7 @@ export default class Career extends Component {
         <div className="careers-content">
           <h3>
             Discover rewarding career opportunities with <a href="/">Kees.qa</a>
-            . Please submit your CV to:{" "}
+            . Please submit your CV to:
             <a href="mailto:hr@kees.qa">Hr@Kees.qa</a>
           </h3>
         </div>

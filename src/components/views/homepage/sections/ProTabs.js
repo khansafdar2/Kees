@@ -32,7 +32,7 @@ export default class ProTabs extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.product.handle != this.state.product.handle) {
+    if (this.props.product.handle !== this.state.product.handle) {
       this.setState({
         activeIndexAccord: 1,
         product: this.props.product,
@@ -44,8 +44,6 @@ export default class ProTabs extends Component {
 
     }
   }
-
-
 
   componentDidMount() {
     this.updateTabs()
@@ -106,11 +104,11 @@ export default class ProTabs extends Component {
           {
             product.features.map((feature, index) => {
               return (
-                <>
+                <div key={index}>
                   {/* <p><span>{feature.feature_title}</span> {feature.feature_details} </p> */}
                   {
                     feature.feature_title ?
-                      <div className="specifications">
+                      <div className="specifications" >
 
                         <div className="featureTitle">
                           <img src={featureArrow} alt=''></img>   <span>{feature.feature_title}</span>
@@ -122,9 +120,8 @@ export default class ProTabs extends Component {
                       </div>
                       : null
                   }
-                </>
+                </div>
               )
-
             })
           }
 

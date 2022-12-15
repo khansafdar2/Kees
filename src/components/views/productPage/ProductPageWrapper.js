@@ -11,19 +11,18 @@ class ProductPageWrapper extends React.Component {
     }
   }
   componentDidUpdate = () => {
-    if(this.props.match.params.handle != this.state.handle)
-    {
-      this.setState({handle: this.props.match.params.handle })
+    if (this.props.match.params.handle !== this.state.handle) {
+      this.setState({ handle: this.props.match.params.handle })
     }
   }
-  
-  render() { 
-    return ( 
+
+  render() {
+    return (
       <>
-        <ProductPage handle={this.state.handle}/>
+        <ProductPage handle={this.state.handle} />
       </>
     );
   }
 }
- 
+
 export default ProductPageWrapper;

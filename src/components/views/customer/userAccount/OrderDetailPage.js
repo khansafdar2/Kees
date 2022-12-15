@@ -59,19 +59,19 @@ class OrderDetailPage extends React.Component {
             <>
               <div className="order-token-wrapper">
                 <h1>
-                  ORDER # <span>{this.state.orderId}</span>{" "}
+                  ORDER # <span>{this.state.orderId}</span>
                 </h1>
                 {date ? (
                   <>
                     <p className="placed-by">
-                      Placed By{" "}
+                      Placed By
                       <span>
                         {orderDetail.first_name} {orderDetail.last_name}
-                      </span>{" "}
+                      </span>
                     </p>
                     <p>
-                      Placed on{" "}
-                      {moment(orderDetail.created_at).format("MMMM Do YYYY")}{" "}
+                      Placed on
+                      {moment(orderDetail.created_at).format("MMMM Do YYYY")}
                     </p>
                   </>
                 ) : null}
@@ -100,18 +100,18 @@ class OrderDetailPage extends React.Component {
                                 (this.state.isDeleted ? " product-deleted" : "")
                               }
                             >
-                              {" "}
+
                               <>
-                                {" "}
+
                                 <a href={"/product/"}>
                                   <p className="product-title-length">
                                     {item.product_title}
                                   </p>
-                                </a>{" "}
+                                </a>
                                 <p className="variant-title">
                                   {item.variant_title}
                                 </p>
-                              </>{" "}
+                              </>
                             </Table.Cell>
                             <Table.Cell>{item.sku}</Table.Cell>
                             <Table.Cell>{item.price}</Table.Cell>
@@ -125,7 +125,7 @@ class OrderDetailPage extends React.Component {
                   <Table.Footer>
                     <Table.Row>
                       <Table.HeaderCell colSpan="4" floated="left">
-                        {" "}
+
                         <h5> Subtotal</h5>
                       </Table.HeaderCell>
                       <Table.HeaderCell floated="right">
@@ -135,8 +135,8 @@ class OrderDetailPage extends React.Component {
 
                     <Table.Row>
                       <Table.HeaderCell colSpan="4">
-                        {" "}
-                        <h5>Shipping</h5>{" "}
+
+                        <h5>Shipping</h5>
                       </Table.HeaderCell>
                       <Table.HeaderCell>
                         <h5>{orderDetail.total_shipping}</h5>
@@ -155,11 +155,11 @@ class OrderDetailPage extends React.Component {
                 <div className="address-wrapper">
                   <div>
                     <p>
-                      Fulfillment Status{" "}
-                      <span>{orderDetail.fulfillment_status}</span>{" "}
+                      Fulfillment Status
+                      <span>{orderDetail.fulfillment_status}</span>
                     </p>
                     <p>
-                      Payment Status <span>{orderDetail.payment_status}</span>{" "}
+                      Payment Status <span>{orderDetail.payment_status}</span>
                     </p>
                     <p>
                       Order status <span>{orderDetail.order_status}</span>

@@ -181,14 +181,14 @@ class Footer extends React.Component {
 
                     <form onSubmit={this.emialSubscribe}
                       action="https://kees.us14.list-manage.com/subscribe/post?u=3b5bf550fbeeb655d4eea4281&amp;id=29748d1586"
-                      method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank"
-                      novalidate >
+                      method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank"
+                      noValidate >
 
                       <Input type='text' placeholder='Email...' action>
                         <input name="EMAIL" value={this.state.email} onChange={(e) => { this.setState({ email: e.target.value }) }} />
                         <Button type='submit' icon='mail outline' ></Button>
 
-                        <input type="hidden" name="b_3b5bf550fbeeb655d4eea4281_29748d1586" tabindex="-1" value="" />
+                        <input type="hidden" name="b_3b5bf550fbeeb655d4eea4281_29748d1586" tabIndex="-1" value="" />
                         <input type="hidden" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" className="button" />
                       </Input>
                     </form>

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Loader } from "semantic-ui-react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Button, Icon } from "semantic-ui-react";
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
 // import { Search, Grid ,Pagination} from 'semantic-ui-react'
 // import debounce from 'lodash/debounce';
 
@@ -29,7 +29,7 @@ class VendorsPage extends React.Component {
     // this.setState({ activePage: this.state.activePage + 1 })
     Axios.get(
       process.env.REACT_APP_BACKEND_HOST +
-        `/storefront/vendor?limit=${this.state.vendorsLimit}&page=${this.state.activePage}&search=${this.state.query}   `
+      `/storefront/vendor?limit=${this.state.vendorsLimit}&page=${this.state.activePage}&search=${this.state.query}   `
     )
       .then((response) => {
         this.setState({
@@ -118,7 +118,7 @@ class VendorsPage extends React.Component {
           <h1>Shop By Vendors</h1>
 
           <div className="brand-search">
-            <div class="ui input">
+            <div className="ui input">
               <input
                 type="text"
                 value={this.state.query}
@@ -145,17 +145,17 @@ class VendorsPage extends React.Component {
             <div className="brands-wrapper">
               {vendors.length
                 ? vendors.map((vendor) => {
-                    return (
-                      <div className="brand-card">
-                        <div>
-                          <Link to={"/vendor/" + vendor.handle}>
-                            {/* <img src={brand.image ? brand.image.cdn_link : dummyBrandImage} alt="brandImage" /> */}
-                            <h4>{vendor.name}</h4>
-                          </Link>
-                        </div>
+                  return (
+                    <div className="brand-card">
+                      <div>
+                        <Link to={"/vendor/" + vendor.handle}>
+                          {/* <img src={brand.image ? brand.image.cdn_link : dummyBrandImage} alt="brandImage" /> */}
+                          <h4>{vendor.name}</h4>
+                        </Link>
                       </div>
-                    );
-                  })
+                    </div>
+                  );
+                })
                 : null}
             </div>
           </InfiniteScroll>

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
 import Axios from "axios";
+import React, { Component } from "react";
 import { keesLogoHeader } from "../../../services/context";
 // import KeesLogoMobile from '../assets/img/KEES_New-Logo.png';
 import KeesLogo from "../../../assets/img/keesLogo.png";
@@ -44,7 +44,7 @@ export class MobileHeader extends Component {
       if (document.querySelector("#google_translate_element select")) {
         if (document.querySelector("#google_translate_element select").value) {
           this.setState({ selected_lang: seletedValue });
-          if (seletedValue == "ar") {
+          if (seletedValue === "ar") {
             document.querySelector("html").setAttribute("dir", "rtl");
           } else {
             document.querySelector("html").setAttribute("dir", "ltr");
@@ -63,7 +63,7 @@ export class MobileHeader extends Component {
 
   langName = (lang) => {
     // debugger
-    if (lang.value == this.state.selected_lang) {
+    if (lang.value === this.state.selected_lang) {
       this.setState({ langText: lang.text });
     }
   };
@@ -82,13 +82,13 @@ export class MobileHeader extends Component {
       "#google_translate_element select"
     );
     // console.log(target.value)
-    if (langDropdown.value != target.value) {
+    if (langDropdown.value !== target.value) {
       langDropdown.value = target.value;
       var event = new Event("change");
       langDropdown.dispatchEvent(event);
       langDropdown.dispatchEvent(event);
 
-      if (target.value == "ar") {
+      if (target.value === "ar") {
         document.querySelector("html").setAttribute("dir", "rtl");
       } else {
         document.querySelector("html").setAttribute("dir", "ltr");
@@ -254,16 +254,16 @@ export class MobileHeader extends Component {
             <div className="wallet mobile-menu-icons mobile-search-icon">
               {this.props.loggedIn ? (
                 <>
-              <Link to="/wallet">
-                {" "}
-                <img
-                  src={walleticon}
-                  width="19"
-                  height="18"
-                  alt="wallet icon"
-                />
-              </Link>
-              </>
+                  <Link to="/wallet">
+
+                    <img
+                      src={walleticon}
+                      width="19"
+                      height="18"
+                      alt="wallet icon"
+                    />
+                  </Link>
+                </>
               ) : null}
             </div>
             <button
@@ -403,7 +403,7 @@ export class MobileHeader extends Component {
               </svg>
             </button>
           </div>
-          
+
           <div className="mobile-category-wrap">
             <button className="mobile-category-btn" onClick={this.openCateMenu}>
               <p>
@@ -486,149 +486,149 @@ export class MobileHeader extends Component {
                   {loading && header.length
                     ? null
                     : header.navigation_bar.category_structure.map((item) => (
-                        <li key={item.id + "--" + item.handle}>
-                          <Link
-                            to={"/collection/" + item.handle}
-                            onClick={this.closeSidebar}
+                      <li key={item.id + "--" + item.handle}>
+                        <Link
+                          to={"/collection/" + item.handle}
+                          onClick={this.closeSidebar}
+                        >
+                          {item.name}
+                        </Link>
+                        {item.sub_category.length ? (
+                          <button
+                            className="menu-cate-next-btn"
+                            onClick={this.showLayer}
                           >
-                            {item.name}
-                          </Link>
-                          {item.sub_category.length ? (
-                            <button
-                              className="menu-cate-next-btn"
-                              onClick={this.showLayer}
+                            <svg
+                              width="6"
+                              height="11"
+                              viewBox="0 0 6 11"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
                             >
-                              <svg
-                                width="6"
-                                height="11"
-                                viewBox="0 0 6 11"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
+                              <path
+                                d="M0.776855 9.49805L4.77686 5.49805L0.776855 1.49805"
+                                stroke="#2E2E2D"
+                                stroke-width="1.5"
+                              />
+                            </svg>
+                          </button>
+                        ) : (
+                          ""
+                        )}
+                        {item.sub_category.length ? (
+                          <div className="mobile-cate-child-wrap mobile-cat-menu-subChild">
+                            <div className="mobile-cat-layer-header">
+                              <button
+                                className="menu-cate-back-btn"
+                                onClick={this.hideLayer}
                               >
-                                <path
-                                  d="M0.776855 9.49805L4.77686 5.49805L0.776855 1.49805"
-                                  stroke="#2E2E2D"
-                                  stroke-width="1.5"
-                                />
-                              </svg>
-                            </button>
-                          ) : (
-                            ""
-                          )}
-                          {item.sub_category.length ? (
-                            <div className="mobile-cate-child-wrap mobile-cat-menu-subChild">
-                              <div className="mobile-cat-layer-header">
-                                <button
-                                  className="menu-cate-back-btn"
-                                  onClick={this.hideLayer}
+                                <svg
+                                  width="30"
+                                  height="15"
+                                  viewBox="0 0 20 8"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
                                 >
-                                  <svg
-                                    width="30"
-                                    height="15"
-                                    viewBox="0 0 20 8"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
+                                  <path
+                                    d="M0.646446 3.64644C0.451185 3.84171 0.451185 4.15829 0.646446 4.35355L3.82843 7.53553C4.02369 7.73079 4.34027 7.73079 4.53553 7.53553C4.7308 7.34027 4.7308 7.02369 4.53553 6.82843L1.70711 4L4.53553 1.17157C4.7308 0.976309 4.7308 0.659727 4.53553 0.464465C4.34027 0.269203 4.02369 0.269203 3.82843 0.464465L0.646446 3.64644ZM20 3.5L1 3.5L1 4.5L20 4.5L20 3.5Z"
+                                    fill="#2E2E2D"
+                                  />
+                                </svg>
+                              </button>
+                              <p>{item.name}</p>
+                            </div>
+                            <ul>
+                              {item.sub_category.map((subItem) => (
+                                <li
+                                  className={subItem.handle}
+                                  key={subItem.id + "--" + subItem.handle}
+                                >
+                                  <Link
+                                    to={"/collection/" + subItem.handle}
+                                    onClick={this.closeSidebar}
                                   >
-                                    <path
-                                      d="M0.646446 3.64644C0.451185 3.84171 0.451185 4.15829 0.646446 4.35355L3.82843 7.53553C4.02369 7.73079 4.34027 7.73079 4.53553 7.53553C4.7308 7.34027 4.7308 7.02369 4.53553 6.82843L1.70711 4L4.53553 1.17157C4.7308 0.976309 4.7308 0.659727 4.53553 0.464465C4.34027 0.269203 4.02369 0.269203 3.82843 0.464465L0.646446 3.64644ZM20 3.5L1 3.5L1 4.5L20 4.5L20 3.5Z"
-                                      fill="#2E2E2D"
-                                    />
-                                  </svg>
-                                </button>
-                                <p>{item.name}</p>
-                              </div>
-                              <ul>
-                                {item.sub_category.map((subItem) => (
-                                  <li
-                                    className={subItem.handle}
-                                    key={subItem.id + "--" + subItem.handle}
-                                  >
-                                    <Link
-                                      to={"/collection/" + subItem.handle}
-                                      onClick={this.closeSidebar}
+                                    {subItem.name}
+                                  </Link>
+                                  {subItem.super_sub_category.length ? (
+                                    <button
+                                      className="menu-cate-next-btn"
+                                      onClick={this.showLayer}
                                     >
-                                      {subItem.name}
-                                    </Link>
-                                    {subItem.super_sub_category.length ? (
-                                      <button
-                                        className="menu-cate-next-btn"
-                                        onClick={this.showLayer}
+                                      <svg
+                                        width="6"
+                                        height="11"
+                                        viewBox="0 0 6 11"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
                                       >
-                                        <svg
-                                          width="6"
-                                          height="11"
-                                          viewBox="0 0 6 11"
-                                          fill="none"
-                                          xmlns="http://www.w3.org/2000/svg"
+                                        <path
+                                          d="M0.776855 9.49805L4.77686 5.49805L0.776855 1.49805"
+                                          stroke="#2E2E2D"
+                                          stroke-width="1.5"
+                                        />
+                                      </svg>
+                                    </button>
+                                  ) : (
+                                    ""
+                                  )}
+                                  {subItem.super_sub_category.length ? (
+                                    <div className="mobile-cate-child-wrap mobile-cat-menu-supsubChild">
+                                      <div className="mobile-cat-layer-header">
+                                        <button
+                                          className="menu-cate-back-btn"
+                                          onClick={this.hideLayer}
                                         >
-                                          <path
-                                            d="M0.776855 9.49805L4.77686 5.49805L0.776855 1.49805"
-                                            stroke="#2E2E2D"
-                                            stroke-width="1.5"
-                                          />
-                                        </svg>
-                                      </button>
-                                    ) : (
-                                      ""
-                                    )}
-                                    {subItem.super_sub_category.length ? (
-                                      <div className="mobile-cate-child-wrap mobile-cat-menu-supsubChild">
-                                        <div className="mobile-cat-layer-header">
-                                          <button
-                                            className="menu-cate-back-btn"
-                                            onClick={this.hideLayer}
+                                          <svg
+                                            width="30"
+                                            height="15"
+                                            viewBox="0 0 20 8"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
                                           >
-                                            <svg
-                                              width="30"
-                                              height="15"
-                                              viewBox="0 0 20 8"
-                                              fill="none"
-                                              xmlns="http://www.w3.org/2000/svg"
+                                            <path
+                                              d="M0.646446 3.64644C0.451185 3.84171 0.451185 4.15829 0.646446 4.35355L3.82843 7.53553C4.02369 7.73079 4.34027 7.73079 4.53553 7.53553C4.7308 7.34027 4.7308 7.02369 4.53553 6.82843L1.70711 4L4.53553 1.17157C4.7308 0.976309 4.7308 0.659727 4.53553 0.464465C4.34027 0.269203 4.02369 0.269203 3.82843 0.464465L0.646446 3.64644ZM20 3.5L1 3.5L1 4.5L20 4.5L20 3.5Z"
+                                              fill="#2E2E2D"
+                                            />
+                                          </svg>
+                                        </button>
+                                        <p>{subItem.name}</p>
+                                      </div>
+                                      <ul>
+                                        {subItem.super_sub_category.map(
+                                          (supSubItem) => (
+                                            <li
+                                              key={
+                                                supSubItem.id +
+                                                "--" +
+                                                supSubItem.handle
+                                              }
                                             >
-                                              <path
-                                                d="M0.646446 3.64644C0.451185 3.84171 0.451185 4.15829 0.646446 4.35355L3.82843 7.53553C4.02369 7.73079 4.34027 7.73079 4.53553 7.53553C4.7308 7.34027 4.7308 7.02369 4.53553 6.82843L1.70711 4L4.53553 1.17157C4.7308 0.976309 4.7308 0.659727 4.53553 0.464465C4.34027 0.269203 4.02369 0.269203 3.82843 0.464465L0.646446 3.64644ZM20 3.5L1 3.5L1 4.5L20 4.5L20 3.5Z"
-                                                fill="#2E2E2D"
-                                              />
-                                            </svg>
-                                          </button>
-                                          <p>{subItem.name}</p>
-                                        </div>
-                                        <ul>
-                                          {subItem.super_sub_category.map(
-                                            (supSubItem) => (
-                                              <li
-                                                key={
-                                                  supSubItem.id +
-                                                  "--" +
+                                              <Link
+                                                to={
+                                                  "/collection/" +
                                                   supSubItem.handle
                                                 }
+                                                onClick={this.closeSidebar}
                                               >
-                                                <Link
-                                                  to={
-                                                    "/collection/" +
-                                                    supSubItem.handle
-                                                  }
-                                                  onClick={this.closeSidebar}
-                                                >
-                                                  {supSubItem.name}
-                                                </Link>
-                                              </li>
-                                            )
-                                          )}
-                                        </ul>
-                                      </div>
-                                    ) : (
-                                      ""
-                                    )}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ) : (
-                            ""
-                          )}
-                        </li>
-                      ))}
+                                                {supSubItem.name}
+                                              </Link>
+                                            </li>
+                                          )
+                                        )}
+                                      </ul>
+                                    </div>
+                                  ) : (
+                                    ""
+                                  )}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                      </li>
+                    ))}
                 </ul>
               </div>
             </div>

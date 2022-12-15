@@ -1,5 +1,5 @@
 import "./wallet.scss";
-import { Tab, Input, Icon, Message } from "semantic-ui-react";
+import { Icon, Message } from "semantic-ui-react";
 import React, { Component } from "react";
 import Axios from "axios";
 import moment from "moment";
@@ -39,10 +39,10 @@ export default class wallet extends Component {
   getWallet = () => {
     Axios.get(
       process.env.REACT_APP_BACKEND_HOST +
-        "/storefront/get_wallet/" +
-        this.state.customer_id +
-        "?token=" +
-        this.state.token
+      "/storefront/get_wallet/" +
+      this.state.customer_id +
+      "?token=" +
+      this.state.token
     ).then((response) => {
       // console.log("Wallet", response.data);
       this.setState(
@@ -59,10 +59,10 @@ export default class wallet extends Component {
     // debugger
     Axios.get(
       process.env.REACT_APP_BACKEND_HOST +
-        "/storefront/get_wallet_history/" +
-        this.state.wallet.id +
-        "?token=" +
-        this.state.token
+      "/storefront/get_wallet_history/" +
+      this.state.wallet.id +
+      "?token=" +
+      this.state.token
     ).then((response) => {
       // console.log('History', response.data);
       this.setState({ history: response.data });
@@ -90,9 +90,9 @@ export default class wallet extends Component {
     // debugger
     Axios.post(
       process.env.REACT_APP_BACKEND_HOST +
-        "/storefront/redeem_loyalty_points" +
-        "?token=" +
-        this.state.token,
+      "/storefront/redeem_loyalty_points" +
+      "?token=" +
+      this.state.token,
       body
     )
       .then((response) => {
@@ -119,9 +119,9 @@ export default class wallet extends Component {
     // debugger
     Axios.post(
       process.env.REACT_APP_BACKEND_HOST +
-        "/storefront/redeem_coupon" +
-        "?token=" +
-        this.state.token,
+      "/storefront/redeem_coupon" +
+      "?token=" +
+      this.state.token,
       body
     )
       .then((response) => {
@@ -143,147 +143,148 @@ export default class wallet extends Component {
   };
 
   render() {
-    const { history, showRedeemError, redeemError, activeIndex } = this.state;
+    const { showRedeemError, redeemError, activeIndex } = this.state;
 
-    const redeemPane = [
-      {
-        render: () => (
-          <Tab.Pane>
-            <div className="ui input">
-              <div>
-                <input
-                  className="points"
-                  value={this.state.loyaltyPoints}
-                  onChange={this.handleChange}
-                  type="text"
-                  placeholder="Type points"
-                  max={this.state.redeemPoints}
-                />
-              </div>
-              <div>
-                <p className="total-value">
-                  % {this.state.wallet?.loyalty_points?.amount_equal_point} ={" "}
-                  {this.state.loyaltyPoints /
-                    this.state.wallet?.loyalty_points?.amount_equal_point}
-                </p>
-              </div>
-            </div>
-            <button
-              className="button"
-              type="submit"
-              onClick={this.redeemLoyaltyPoints}
-            >
-              REDEEM
-            </button>
+    // const redeemPane = [
+    //   {
+    //     render: () => (
+    //       <Tab.Pane>
+    //         <div className="ui input">
+    //           <div>
+    //             <input
+    //               className="points"
+    //               value={this.state.loyaltyPoints}
+    //               onChange={this.handleChange}
+    //               type="text"
+    //               placeholder="Type points"
+    //               max={this.state.redeemPoints}
+    //             />
+    //           </div>
+    //           <div>
+    //             <p className="total-value">
+    //               % {this.state.wallet?.loyalty_points?.amount_equal_point} =
+    //               {this.state.loyaltyPoints /
+    //                 this.state.wallet?.loyalty_points?.amount_equal_point}
+    //             </p>
+    //           </div>
+    //         </div>
+    //         <button
+    //           className="button"
+    //           type="submit"
+    //           onClick={this.redeemLoyaltyPoints}
+    //         >
+    //           REDEEM
+    //         </button>
 
-            {showRedeemError ? (
-              <Message
-                className="err-message"
-                error
-                header=""
-                content={redeemError}
-              />
-            ) : null}
-          </Tab.Pane>
-        ),
-      },
-    ];
+    //         {showRedeemError ? (
+    //           <Message
+    //             className="err-message"
+    //             error
+    //             header=""
+    //             content={redeemError}
+    //           />
+    //         ) : null}
+    //       </Tab.Pane>
+    //     ),
+    //   },
+    // ];
 
-    const coupansPane = [
-      {
-        render: () => (
-          <Tab.Pane>
-            {this.state.wallet.coupons?.length ? (
-              <>
-                {this.state.wallet.coupons?.map((coupon) => {
-                  return (
-                    <>
-                      <div className="coupans">
-                        <div>
-                          <p className="coupan-code">
-                            {coupon.name} {coupon.value}
-                          </p>
-                        </div>
-                        {new Date(coupon.expiry_date) < Date.now() ? (
-                          <button
-                            className="redeem expired"
-                            type="submit"
-                            disabled
-                          >
-                            Expired
-                          </button>
-                        ) : (
-                          <button
-                            className="redeem"
-                            type="submit"
-                            onClick={(e) => this.redeemCoupan(coupon.id)}
-                          >
-                            Redeem
-                          </button>
-                        )}
-                      </div>
-                    </>
-                  );
-                })}
-              </>
-            ) : (
-              <p className="detail">No Coupons Found</p>
-            )}
-          </Tab.Pane>
-        ),
-      },
-    ];
+    // const coupansPane = [
+    //   {
+    //     render: () => (
+    //       <Tab.Pane>
+    //         {this.state.wallet.coupons?.length ? (
+    //           <>
+    //             {this.state.wallet.coupons?.map((coupon) => {
+    //               return (
+    //                 <>
+    //                   <div className="coupans">
+    //                     <div>
+    //                       <p className="coupan-code">
+    //                         {coupon.name} {coupon.value}
+    //                       </p>
+    //                     </div>
+    //                     {new Date(coupon.expiry_date) < Date.now() ? (
+    //                       <button
+    //                         className="redeem expired"
+    //                         type="submit"
+    //                         disabled
+    //                       >
+    //                         Expired
+    //                       </button>
+    //                     ) : (
+    //                       <button
+    //                         className="redeem"
+    //                         type="submit"
+    //                         onClick={(e) => this.redeemCoupan(coupon.id)}
+    //                       >
+    //                         Redeem
+    //                       </button>
+    //                     )}
+    //                   </div>
+    //                 </>
+    //               );
+    //             })}
+    //           </>
+    //         ) : (
+    //           <p className="detail">No Coupons Found</p>
+    //         )}
+    //       </Tab.Pane>
+    //     ),
+    //   },
+    // ];
 
-    const historyPane = [
-      {
-        render: () => (
-          <Tab.Pane className="c">
-            {this.state.history?.length ? (
-              <>
-                {this.state.history.map((his) => {
-                  return (
-                    <>
-                      <div className="coupans history">
-                        <div className="coupans">
-                          <div className="arrow-div">
-                            {his.action == "Debited" ? (
-                              <Icon className="debit-arrow" name="arrow up" />
-                            ) : (
-                              <Icon
-                                className="credit-arrow"
-                                name="arrow down"
-                              />
-                            )}
-                          </div>
-                          <p>
-                            {his.action} by {his.type}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="time">
-                            {moment(his.created_at).format(
-                              "h:mm:ss a, MMM Do YYYY"
-                            )}
-                          </p>
-                          {his.action == "Debited" ? (
-                            <p className="debit_amount">{his.value}</p>
-                          ) : (
-                            <p className="credit_amount">{his.value}</p>
-                          )}
-                          {/* <p className='amount'>{his.value}</p> */}
-                        </div>
-                      </div>
-                    </>
-                  );
-                })}
-              </>
-            ) : (
-              <p className="detail">No History Found</p>
-            )}
-          </Tab.Pane>
-        ),
-      },
-    ];
+    // const historyPane = [
+    //   {
+    //     render: () => (
+    //       <Tab.Pane className="c">
+    //         {this.state.history?.length ? (
+    //           <>
+    //             {this.state.history.map((his) => {
+    //               return (
+    //                 <>
+    //                   <div className="coupans history">
+    //                     <div className="coupans">
+    //                       <div className="arrow-div">
+    //                         {his.action === "Debited" ? (
+    //                           <Icon className="debit-arrow" name="arrow up" />
+    //                         ) : (
+    //                           <Icon
+    //                             className="credit-arrow"
+    //                             name="arrow down"
+    //                           />
+    //                         )}
+    //                       </div>
+    //                       <p>
+    //                         {his.action} by {his.type}
+    //                       </p>
+    //                     </div>
+    //                     <div>
+    //                       <p className="time">
+    //                         {moment(his.created_at).format(
+    //                           "h:mm:ss a, MMM Do YYYY"
+    //                         )}
+    //                       </p>
+    //                       {his.action === "Debited" ? (
+    //                         <p className="debit_amount">{his.value}</p>
+    //                       ) : (
+    //                         <p className="credit_amount">{his.value}</p>
+    //                       )}
+    //                       {/* <p className='amount'>{his.value}</p> */}
+    //                     </div>
+    //                   </div>
+    //                 </>
+    //               );
+    //             })}
+    //           </>
+    //         ) : (
+    //           <p className="detail">No History Found</p>
+    //         )}
+    //       </Tab.Pane>
+    //     ),
+    //   },
+    // ];
+
     return (
       <>
         <div className="wallet-main-container">
@@ -343,13 +344,13 @@ export default class wallet extends Component {
                         </div>
                         <div>
                           <p className="total-value">
-                            {" "}
-                            &divide;{" "}
+
+                            &divide;
                             {
                               this.state.wallet?.loyalty_points
                                 ?.amount_equal_point
-                            }{" "}
-                            ={" "}
+                            }
+                            =
                             {this.state.loyaltyPoints /
                               this.state.wallet?.loyalty_points
                                 ?.amount_equal_point}
@@ -450,7 +451,7 @@ export default class wallet extends Component {
                         <div className="coupans history">
                           <div className="coupans">
                             <div className="arrow-div">
-                              {his.action == "Debited" ? (
+                              {his.action === "Debited" ? (
                                 <Icon className="debit-arrow" name="arrow up" />
                               ) : (
                                 <Icon
@@ -469,7 +470,7 @@ export default class wallet extends Component {
                                 "h:mm:ss a, MMM Do YYYY"
                               )}
                             </p>
-                            {his.action == "Debited" ? (
+                            {his.action === "Debited" ? (
                               <p className="debit_amount">{his.value}</p>
                             ) : (
                               <p className="credit_amount">{his.value}</p>

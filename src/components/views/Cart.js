@@ -10,7 +10,7 @@ import { Helmet } from 'react-helmet'
 
 import { connect } from 'react-redux'
 import {
-  Add_to_cart,
+  // Add_to_cart,
   Remove_from_cart,
   Update_minicart,
   Update_decr_Qty,
@@ -75,7 +75,7 @@ class Cart extends React.Component {
       let cart = JSON.parse(localStorage.getItem('cart'))
       for (let i = 0; i < cart.length; i++) {
         const lineItem = cart[i]
-        if (lineItem.varId == variantId) {
+        if (lineItem.varId === variantId) {
           lineItem.detail.quantity = newQuantity
           break
         }
@@ -123,7 +123,7 @@ class Cart extends React.Component {
 
     for (let i = 0; i < cart.length; i++) {
       const lineItem = cart[i]
-      if (lineItem.varId == varId) {
+      if (lineItem.varId === varId) {
         cart.splice(i, 1)
 
         this.props.dispatch(
@@ -283,7 +283,7 @@ class Cart extends React.Component {
             // localStorage.removeItem('deletedItems')
 
             {
-              this.state.checkout_settings?.customer_accounts == 'required' &&
+              this.state.checkout_settings?.customer_accounts === 'required' &&
                 !sessionStorage.getItem('kees-customer-token') ? (
                 <>
                   {/*(window.location.href = '/login')*/}
@@ -299,7 +299,7 @@ class Cart extends React.Component {
           })
           .catch((err) => {
             //     console.log(err.response)
-            if (err.response.data.detail == 'lineitems length zero') {
+            if (err.response.data.detail === 'lineitems length zero') {
               this.setState({
                 checkoutMsg: 'You added sold out item to cart',
               })
@@ -399,33 +399,33 @@ class Cart extends React.Component {
               <table>
                 <tr>
                   <th>
-                    {' '}
+
                     <p> Product</p>
                   </th>
                   <th>
-                    {' '}
+
                     <p> Price</p>
                   </th>
                   <th>
-                    {' '}
+
                     <p> Quantity</p>
                   </th>
                   <th>
-                    {' '}
+
                     <p> Total</p>
                   </th>
                   <th>
-                    {' '}
+
                     <p> Remove</p>
                   </th>
                 </tr>
 
                 {/* print lineitems   */}
                 {cart.length && cart[0] != null
-                  ? cart.map((lineItem) => {
+                  ? cart.map((lineItem, key) => {
                     const itemDetail = lineItem.detail
                     return (
-                      <tr variantId={lineItem.varId}>
+                      <tr variantId={lineItem.varId} key={key}>
                         <td>
                           <div className='k-row'>
                             <Link to={'/product/' + itemDetail.productHandle}>
@@ -443,11 +443,11 @@ class Cart extends React.Component {
                             </Link>
                             <div className='cart-product-title-wrap'>
                               <h5>
-                                {' '}
+
                                 <Link
                                   to={'/product/' + itemDetail.productHandle}
                                 >
-                                  {' '}
+
                                   {itemDetail.title}
                                 </Link>
                               </h5>
@@ -460,7 +460,7 @@ class Cart extends React.Component {
                                   : itemDetail.variantTitle}
                               </p>
                               <p className='quant-unavailable'>
-                                Quantity Unavailable. Max available inventory{' '}
+                                Quantity Unavailable. Max available inventory
                                 <span></span>
                               </p>
                             </div>
@@ -469,7 +469,7 @@ class Cart extends React.Component {
                         <td>
                           <p className='cart-item-price'>
                             <span>Price: </span>
-                            {this.props.cart.QAR}{' '}
+                            {this.props.cart.QAR}
                             {itemDetail.variantPrice.original_price}
                           </p>
                         </td>
@@ -495,7 +495,7 @@ class Cart extends React.Component {
                                 min='0'
                               />
                               <Button
-                                maxInventory={itemDetail.inventoryQuantity}
+                                maxinventory={itemDetail.inventoryQuantity}
                                 icon='plus'
                                 onClick={(e) =>
                                   this.quantityIncrement(e, lineItem.varId)
@@ -508,9 +508,9 @@ class Cart extends React.Component {
                         <td>
                           <p className='cart-item-total-price'>
                             <span>Total Price: </span>
-                            {this.props.cart.QAR}{' '}
-                            {itemDetail.quantity *
-                              itemDetail.variantPrice.original_price}
+                            {this.props?.cart?.QAR}
+                            {itemDetail?.quantity *
+                              itemDetail?.variantPrice?.original_price}
                           </p>
                         </td>
                         <td>
@@ -539,8 +539,8 @@ class Cart extends React.Component {
               </div>
               <div className='subtotal'>
                 <h4>
-                  Subtotal: {this.props.cart.QAR}
-                  <span>{this.props.cart.totalprice}</span>{' '}
+                  Subtotal: {this.props?.cart?.QAR}
+                  <span>{this.props?.cart?.totalprice}</span>
                 </h4>
                 <p>Shipping, and discounts will be calculated at checkout.</p>
                 <div className='k-row cart-action-btns'>

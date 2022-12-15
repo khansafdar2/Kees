@@ -5,7 +5,6 @@ import Slider from "react-slick";
 // import arrowRight from '../../../../assets/svg/arrowRight.svg';
 import { sliderSettings as settings } from '../../../../services/context'
 
-
 class SubTab extends React.Component {
 
   constructor(props) {
@@ -21,7 +20,7 @@ class SubTab extends React.Component {
 
   componentDidUpdate() {
     // debugger
-    if (this.props.products != this.state.products) {
+    if (this.props.products !== this.state.products) {
       this.setState({ products: this.props.products, showTab: false }, () => this.setState({ showTab: true }))
     }
   }

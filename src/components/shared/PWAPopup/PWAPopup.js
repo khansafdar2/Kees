@@ -11,7 +11,7 @@ class PWAPopup extends React.Component {
     // Detects if device is on iOS 
     const isIos = () => {
       const userAgent = window.navigator.userAgent.toLowerCase();
-      return /iphone|ipad|ipod/.test( userAgent );
+      return /iphone|ipad|ipod/.test(userAgent);
     }
 
     // Detects if device is in standalone mode
@@ -22,7 +22,7 @@ class PWAPopup extends React.Component {
         this.setState({
           show: true
         });
-  
+
         setTimeout(() => {
           this.setState({
             show: false
@@ -32,13 +32,13 @@ class PWAPopup extends React.Component {
     }
   }
 
-  render() { 
-    return ( 
-    <>
-      <div id="ios-pwa-popup" className={this.state.show ? "show" : ""}>
-        <p>Install this webapp on your iPhone: tap <img class="share-icon" src={shareIcon} alt="Share" /> and then Add to Homescreen.</p>
-      </div>
-    </> );
+  render() {
+    return (
+      <>
+        <div id="ios-pwa-popup" className={this.state.show ? "show" : ""}>
+          <p>Install this webapp on your iPhone: tap <img className="share-icon" src={shareIcon} alt="Share" /> and then Add to Homescreen.</p>
+        </div>
+      </>);
   }
 }
 

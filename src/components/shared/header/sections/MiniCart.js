@@ -3,7 +3,7 @@ import cartIcon from "../../../../assets/svg/cartIcon.svg";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import {
-  Add_to_cart,
+  // Add_to_cart,
   Update_minicart,
 } from "../../../../redux/slices/cartSlice";
 
@@ -18,6 +18,7 @@ class MiniCart extends React.Component {
   }
 
   updateCart = () => {
+    // debugger
     this.props.dispatch(Update_minicart());
 
     // this.props.disptach(Add_to_cart())
@@ -55,11 +56,8 @@ class MiniCart extends React.Component {
           <Link to="/cart">
             <p id="cart-total">
               <span>
-                {" "}
-                {this.props.cart.QAR}{" "}
+                {this.props.cart.QAR} &nbsp;
                 <span className="cart-total-quantity">
-                  {/* {" "} */}
-
                   {this.props.cart.totalprice}
                 </span>
               </span>

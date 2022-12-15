@@ -25,7 +25,7 @@ export default class AboutUs extends Component {
                     <div className="heading">
                         <h1> About us </h1>
                     </div>
-                    {/* <div class=" ABOUT US para"> */}
+                    {/* <div className=" ABOUT US para"> */}
                     <div className="content">
                         <h3 className="question" ><span><Link to='/'>Kees.qa</Link></span> Qatar First Local Online Marketplace (Anything else?)</h3>
                         <p>Kees is here to please! Kees is a Qatar based e-commerce platform aiming to become

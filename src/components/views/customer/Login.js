@@ -27,7 +27,7 @@ class Login extends Component {
       forgotEmail: '',
       forgotPasswordFormError: false,
       mailSent: false,
-      routeTo : false,
+      routeTo: false,
     }
   }
 
@@ -39,7 +39,7 @@ class Login extends Component {
 
   }
   submitForgotpasswordForm = () => {
-    
+
     let ifEmail = validateEmail(this.state.forgotEmail)
     if (ifEmail) {
       let body = {
@@ -64,7 +64,7 @@ class Login extends Component {
 
 
   }
-  
+
   login = () => {
 
     let body = {
@@ -77,14 +77,14 @@ class Login extends Component {
         // console.log("Login Response", response)
 
         this.props.dispatch(loginn(response))
-        
+
         let redirectToCheckout = localStorage.getItem('redirectToCheckout')
-        if (redirectToCheckout == "true") {
+        if (redirectToCheckout === "true") {
           localStorage.removeItem('redirectToCheckout')
-          this.setState({routeTo  : "checkout"})
+          this.setState({ routeTo: "checkout" })
         }
         else {
-          this.setState({routeTo  : "account"})
+          this.setState({ routeTo: "account" })
         }
       })
       .catch((err) => {
@@ -99,18 +99,18 @@ class Login extends Component {
   render() {
     const { email, password, emailError, passwordError, showFormError, formError } = this.state
     return (
-      
+
       <div className='login-page'>
         {
-          this.state.routeTo ? 
-          <Redirect to={"/" + this.state.routeTo} /> : null
+          this.state.routeTo ?
+            <Redirect to={"/" + this.state.routeTo} /> : null
         }
         <div>
-        <Helmet>
-          <title>Login | KEES</title>
-          <meta name="description" content=" " />
-          <meta name="keyword" content=" " />
-        </Helmet>
+          <Helmet>
+            <title>Login | KEES</title>
+            <meta name="description" content=" " />
+            <meta name="keyword" content=" " />
+          </Helmet>
           <h1>Log in to KEES</h1>
           <div>
             {
@@ -144,7 +144,7 @@ class Login extends Component {
                       : null
                   }
                   {
-                    this.state.forgotEmail != '' ?
+                    this.state.forgotEmail !== '' ?
                       <Button className='primary-button login' type="submit" onClick={this.submitForgotpasswordForm} >Submit</Button>
                       : <Button className='primary-button login' onClick={this.submitForgotpasswordForm} disabled >Submit</Button>
                   }
@@ -180,7 +180,7 @@ class Login extends Component {
                     content={formError}
                   />
                   {
-                    email != '' && password != '' ?
+                    email !== '' && password !== '' ?
                       <Button className='primary-button login' type="submit" onClick={this.login} >LOG IN</Button>
                       : <Button className='primary-button login' onClick={this.login} disabled >LOG IN</Button>
                   }

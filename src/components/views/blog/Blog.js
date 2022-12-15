@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./Blog.scss";
 import { Grid } from "semantic-ui-react";
-import SingleBlog from "./SingleBlog";
+// import SingleBlog from "./SingleBlog";
 import axios from "axios";
 import moment from "moment";
 import Parser from "html-react-parser";
-import KeesLoader from "../../shared/KeesLoader";
+// import KeesLoader from "../../shared/KeesLoader";
 
 const Blog = () => {
   const [blogList, setBlogList] = useState([]);
@@ -22,7 +22,7 @@ const Blog = () => {
     axios
       .get(
         process.env.REACT_APP_BACKEND_HOST +
-          `/storefront/blog_list?page=${activePageIndex}&limit=6`
+        `/storefront/blog_list?page=${activePageIndex}&limit=6`
       )
       .then((res) => {
         setBlogList(res.data?.results);
@@ -42,7 +42,7 @@ const Blog = () => {
     axios
       .get(
         process.env.REACT_APP_BACKEND_HOST +
-          `/storefront/blog_list?page=${activePageIndex}&limit=6`
+        `/storefront/blog_list?page=${activePageIndex}&limit=6`
       )
       .then((res) => {
         setBlogList(res.data?.results);
@@ -62,7 +62,7 @@ const Blog = () => {
     axios
       .get(
         process.env.REACT_APP_BACKEND_HOST +
-          `/storefront/blog_list?category_id=${blog_category_id}&page=${activeCatPageIndex}&limit=6`
+        `/storefront/blog_list?category_id=${blog_category_id}&page=${activeCatPageIndex}&limit=6`
       )
       .then((res) => {
         setActiveCatPageIndex(activeCatPageIndex + 1);
@@ -94,11 +94,11 @@ const Blog = () => {
           {blogList?.map((item, index) => (
             <Grid.Column key={index} mobile={16} tablet={8} computer={5}>
               {/* <Link to={`/blogs/${item.handle}`}> */}
-              <div class="ui cards">
-                <div class="card">
+              <div className="ui cards">
+                <div className="card">
                   <img src={item.thumbnail_image} />
 
-                  <div class="content">
+                  <div className="content">
                     <div className="upper-content">
                       <div
                         className="tag"
@@ -113,14 +113,14 @@ const Blog = () => {
                       </div>
                     </div>
                     <div className=" mid-content">
-                      <Link class="header" to={`/blogs/${item.handle}`}>
+                      <Link className="header" to={`/blogs/${item.handle}`}>
                         {item.title}
                       </Link>
-                      <div class="desc">{Parser(item.content)}</div>
+                      <div className="desc">{Parser(item.content)}</div>
                     </div>
-                    <div class="lower-content">
+                    <div className="lower-content">
                       <Link to={`/blogs/${item.handle}`}>
-                        Read more <i class="angle right icon"></i>
+                        Read more <i className="angle right icon"></i>
                       </Link>
                     </div>
                   </div>
@@ -141,7 +141,7 @@ const Blog = () => {
       {showNextBtn && blogList?.length >= 6 && (
         <div className="next-button">
           <button
-            class="ui button"
+            className="ui button"
             onClick={() => {
               if (activeCatPageIndex === 1) {
                 fetchMoreBlog();
@@ -150,7 +150,7 @@ const Blog = () => {
               }
             }}
           >
-            Next <i class="angle right icon"></i>
+            Next <i className="angle right icon"></i>
           </button>
         </div>
       )}

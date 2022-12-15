@@ -8,7 +8,7 @@ import {
   Icon,
   Message,
   Checkbox,
-  Label,
+  // Label,
 } from 'semantic-ui-react'
 import keesLogo from '../../../../src/assets/img/keesLogo.png'
 import defaultImage from '../../../../src/assets/img/productImagePlaceholder.png'
@@ -16,8 +16,8 @@ import BillingAddressForm from './sections/BillingAddressForm'
 // import ThankyouPage from './sections/ThankyouPage'
 import { Link } from 'react-router-dom'
 import {
-  countryOptions,
-  cityOptions,
+  // countryOptions,
+  // cityOptions,
   validatePhoneNumber,
   validateEmail,
 } from '../../../services/context'
@@ -26,7 +26,6 @@ import { Helmet } from 'react-helmet'
 class Checkout extends Component {
   state = {
     activeIndex: 0,
-    country: '',
     cartDetail: null,
     loginOption: '',
     customerEmailPhone: { valid: false, value: '' },
@@ -94,7 +93,7 @@ class Checkout extends Component {
       ids: [],
     } // to be used for fbq
 
-    if (cart != null && cart.length > 0) {
+    if (cart !== null && cart.length > 0) {
       cart.map((item) => {
         cartObjLists.ids.push(item.detail.id)
       })
@@ -302,7 +301,7 @@ class Checkout extends Component {
     // let applied_promocodes = this.state.applied_promocodes.length
     // let newPromoCodes = this.state.applied_promocodes
     // for (let i = 0; i < applied_promocodes; i++) {
-    //   if (this.state.applied_promocodes[i] == promo) {
+    //   if (this.state.applied_promocodes[i] ===promo) {
     //     newPromoCodes.splice(i, 1)
     //     this.setState({
     //       applied_promocodes: newPromoCodes
@@ -508,7 +507,7 @@ class Checkout extends Component {
             })
             .catch((err) => {
               console.log(err)
-              if (err.response.data.detail == 'lineitems length zero') {
+              if (err.response.data.detail === 'lineitems length zero') {
                 this.setState({ lineItemsMsg: 'Item sold out!' })
                 // window.location.href = '/cart'
               }
@@ -543,7 +542,7 @@ class Checkout extends Component {
         [name]: { valid: true, value: value },
       },
       () => {
-        if (name == 'customerEmailPhone') {
+        if (name === 'customerEmailPhone') {
           document
             .querySelector('.email-or-phone-error')
             .classList.remove('show')
@@ -559,7 +558,7 @@ class Checkout extends Component {
           }
         }
 
-        if (name == 'firstName' || name == 'lastName' || name == 'city') {
+        if (name === 'firstName' || name === 'lastName' || name === 'city') {
           //
           let ifIncludesNumber = this.ifIncludesNumber(value)
           if (ifIncludesNumber) {
@@ -569,7 +568,7 @@ class Checkout extends Component {
           }
         }
 
-        if (name == 'phoneNo') {
+        if (name === 'phoneNo') {
           //
           let ifPhoneNo = validatePhoneNumber(this.state[name].value)
           if (!ifPhoneNo) {
@@ -580,12 +579,12 @@ class Checkout extends Component {
         }
 
         if (
-          name == 'address' ||
-          name == 'city' ||
-          name == 'country' ||
-          name == 'postalCode'
+          name === 'address' ||
+          name === 'city' ||
+          name === 'country' ||
+          name === 'postalCode'
         ) {
-          if (value == '') {
+          if (value === '') {
             this.setState({
               [name]: { valid: false, value: value },
             })
@@ -602,7 +601,7 @@ class Checkout extends Component {
         [name]: { valid: true, value: value },
       },
       () => {
-        if (name == 'customerEmailPhone') {
+        if (name === 'customerEmailPhone') {
           document
             .querySelector('.email-or-phone-error')
             .classList.remove('show')
@@ -618,7 +617,7 @@ class Checkout extends Component {
           }
         }
 
-        if (name == 'firstName' || name == 'lastName' || name == 'city') {
+        if (name === 'firstName' || name === 'lastName' || name === 'city') {
           //
           let ifIncludesNumber = this.ifIncludesNumber(value)
           if (ifIncludesNumber) {
@@ -628,7 +627,7 @@ class Checkout extends Component {
           }
         }
 
-        if (name == 'phoneNo') {
+        if (name === 'phoneNo') {
           //
           let ifPhoneNo = validatePhoneNumber(this.state[name].value)
           if (!ifPhoneNo) {
@@ -639,12 +638,12 @@ class Checkout extends Component {
         }
 
         if (
-          name == 'address' ||
-          name == 'city' ||
-          name == 'country' ||
-          name == 'postalCode'
+          name === 'address' ||
+          name === 'city' ||
+          name === 'country' ||
+          name === 'postalCode'
         ) {
-          if (value == '') {
+          if (value === '') {
             this.setState({
               [name]: { valid: false, value: value },
             })
@@ -682,7 +681,7 @@ class Checkout extends Component {
       billing_address: {},
       paid_by_wallet: this.state.payByWallet,
     }
-    if (this.state.billingAddress == 'shippingAddress') {
+    if (this.state.billingAddress === 'shippingAddress') {
       // delete this.state.shippingAddress.id
       body.billing_address = this.state.shippingAddress
     } else {
@@ -747,7 +746,7 @@ class Checkout extends Component {
             })
             .catch((err) => {
               console.log(err)
-              if (err.response.data.detail == 'lineitems length zero') {
+              if (err.response.data.detail === 'lineitems length zero') {
                 this.setState({ lineItemsMsg: 'Item sold out!' })
 
                 // window.location.href = '/cart'
@@ -762,7 +761,7 @@ class Checkout extends Component {
       .catch((err) => {
         this.setState({ loading: false })
         console.log(err)
-        if (err.response.data.detail == 'lineitems length zero') {
+        if (err.response.data.detail === 'lineitems length zero') {
           this.setState({ lineItemsMsg: 'Item sold out!' })
 
           // window.location.href = '/cart'
@@ -919,7 +918,7 @@ class Checkout extends Component {
       .catch((err) => {
         this.state.loading = false
         console.log(err)
-        if (err.response.data.detail == 'lineitems length zero') {
+        if (err.response.data.detail === 'lineitems length zero') {
           //window.location.href = '/cart'
           this.setState({ lineItemsMsg: 'Item sold out!' })
         }
@@ -965,7 +964,7 @@ class Checkout extends Component {
                 {sessionStorage.getItem('kees-customer-token') ? null : (
                   <div className='account-login-option'>
                     <p>
-                      Already have an account?{' '}
+                      Already have an account?
                       <span className='checkout-login'>
                         <Link
                           to='/login'
@@ -973,7 +972,7 @@ class Checkout extends Component {
                             localStorage.setItem('redirectToCheckout', true)
                           }
                         >
-                          {' '}
+
                           Log in
                         </Link>
                       </span>
@@ -984,7 +983,7 @@ class Checkout extends Component {
               <form onSubmit={this.continueToShipping}>
                 <div className='tabInfo__contact-info-content'>
                   {!sessionStorage.getItem('kees-customer-token') &&
-                    this.state.checkout_settings.customer_contacts == 'both' ? (
+                    this.state.checkout_settings.customer_contacts === 'both' ? (
                     <>
                       <Input
                         id='customer-email-phone'
@@ -1039,7 +1038,7 @@ class Checkout extends Component {
                   ) : null}
                 </div>
                 <div className='tabInfo__shipping-info-content'>
-                  {this.state.checkout_settings.full_name == 'first_name' ? (
+                  {this.state.checkout_settings.full_name === 'first_name' ? (
                     <>
                       <div className='k-row persnalInfo'>
                         <div className='input-wrapper-half'>
@@ -1052,8 +1051,8 @@ class Checkout extends Component {
                             type='text'
                             placeholder='First name'
                           />
-                          {this.state.firstName.valid == false &&
-                            this.state.firstName.value != '' ? (
+                          {this.state.firstName.valid === false &&
+                            this.state.firstName.value !== '' ? (
                             <span className='error' name='firstName'>
                               First Name Should not include nubmers
                             </span>
@@ -1068,8 +1067,8 @@ class Checkout extends Component {
                             type='text'
                             placeholder='Last name (Optional)'
                           />
-                          {this.state.lastName.valid == false &&
-                            this.state.lastName.value != '' ? (
+                          {this.state.lastName.valid === false &&
+                            this.state.lastName.value !== '' ? (
                             <span className='error' name='lastname'>
                               Last Name Should not include nubmers
                             </span>
@@ -1090,8 +1089,8 @@ class Checkout extends Component {
                             type='text'
                             placeholder='First name'
                           />
-                          {this.state.firstName.valid == false &&
-                            this.state.firstName.value != '' ? (
+                          {this.state.firstName.valid === false &&
+                            this.state.firstName.value !== '' ? (
                             <span className='error' name='firstName'>
                               First Name Should not include nubmers
                             </span>
@@ -1107,8 +1106,8 @@ class Checkout extends Component {
                             type='text'
                             placeholder='Last name'
                           />
-                          {this.state.lastName.valid == false &&
-                            this.state.lastName.value != '' ? (
+                          {this.state.lastName.valid === false &&
+                            this.state.lastName.value !== '' ? (
                             <span className='error' name='lastname'>
                               Last Name Should not include nubmers
                             </span>
@@ -1122,7 +1121,7 @@ class Checkout extends Component {
                   <div className="input-wrapper-half">
                     <Input id="customer-fname" value={this.state.firstName.value} onChange={this.handleChange} name="firstName" required type="text" required placeholder='First name' />
                     {
-                      this.state.firstName.valid == false && this.state.firstName.value != '' ?
+                      this.state.firstName.valid ===false && this.state.firstName.value !== '' ?
                         <span className="error" name="firstName">First Name Should not include nubmers</span>
                         :
                         null
@@ -1131,7 +1130,7 @@ class Checkout extends Component {
                   <div className="input-wrapper-half">
                     <Input id="customer-lname" name="lastName" value={this.state.lastName.value} onChange={this.handleChange} required type="text" placeholder='Last name' />
                     {
-                      this.state.lastName.valid == false && this.state.lastName.value != '' ?
+                      this.state.lastName.valid ===false && this.state.lastName.value !== '' ?
                         <span className="error" name="lastname">Last Name Should not include nubmers</span>
                         :
                         null
@@ -1161,8 +1160,8 @@ class Checkout extends Component {
                       type='number'
                       placeholder='Your Phone no'
                     />
-                    {this.state.phoneNo.valid == false &&
-                      this.state.phoneNo.value != '' ? (
+                    {this.state.phoneNo.valid === false &&
+                      this.state.phoneNo.value !== '' ? (
                       <span className='error' name='phoneNo'>
                         Enter valid phone number (00974 xxxx xxxx)
                       </span>
@@ -1222,8 +1221,8 @@ class Checkout extends Component {
                         options={this.state.cityList} //cityOptions
                         value={this.state.city.value}
                       />
-                      {this.state.city.valid == false &&
-                        this.state.city.value != '' ? (
+                      {this.state.city.valid === false &&
+                        this.state.city.value !== '' ? (
                         <span className='error' name='phoneNo'>
                           Enter valid City name
                         </span>
@@ -1259,14 +1258,14 @@ class Checkout extends Component {
                   {/* <Checkbox label='Save this information for next time' /> */}
                   <div className='k-row informationAction'>
                     <a href='/cart'>
-                      {' '}
-                      <Icon name='chevron left' /> Return to cart{' '}
+
+                      <Icon name='chevron left' /> Return to cart
                     </a>
 
                     {/* Continue Shipping Promo Validations ////////////////////////////////////////////////////////////// */}
 
                     {/* {console.log("promooooo", this.state.applied_promocodes.length)} */}
-                    {this.state.checkout_settings?.promo_code == 'required' ? (
+                    {this.state.checkout_settings?.promo_code === 'required' ? (
                       <>
                         {address.valid &&
                           country.valid &&
@@ -1289,7 +1288,7 @@ class Checkout extends Component {
                           </button>
                         )}
                       </>
-                    ) : this.state.checkout_settings?.promo_code ==
+                    ) : this.state.checkout_settings?.promo_code ===
                       'optional' ? (
                       <>
                         {address.valid &&
@@ -1312,7 +1311,7 @@ class Checkout extends Component {
                           </button>
                         )}
                       </>
-                    ) : this.state.checkout_settings?.promo_code == 'hidden' ? (
+                    ) : this.state.checkout_settings?.promo_code === 'hidden' ? (
                       <>
                         {address.valid &&
                           country.valid &&
@@ -1337,7 +1336,7 @@ class Checkout extends Component {
                     ) : null}
 
                     {/* {
-                    (this.state.checkout_settings?.promo_code == "optional") ?
+                    (this.state.checkout_settings?.promo_code ==="optional") ?
                       <>
                         {
                           address.valid && country.valid && city.valid && customerEmailPhone.valid && firstName.valid && lastName.valid && phoneNo.valid ?
@@ -1348,7 +1347,7 @@ class Checkout extends Component {
                   } */}
 
                     {/* {
-                    (this.state.checkout_settings?.promo_code == "hidden") ?
+                    (this.state.checkout_settings?.promo_code ==="hidden") ?
                       <>
                         {
                           address.valid && country.valid && city.valid && customerEmailPhone.valid && firstName.valid && lastName.valid && phoneNo.valid ?
@@ -1410,7 +1409,7 @@ class Checkout extends Component {
                           <>
                             <div className='shipping-methods'>
                               {/* {
-                              this.state.shippingMethods.length !== 1 ? */}
+                              this.state.shippingMethods.length !====1 ? */}
                               <div className='pg-products' key={key}>
                                 {this.getProductsByPG(shipping.product_group)}
                               </div>
@@ -1488,8 +1487,8 @@ class Checkout extends Component {
                   className='return-to-info'
                   onClick={() => this.setState({ activeIndex: 0 })}
                 >
-                  {' '}
-                  <Icon name='chevron left' /> Return to Information{' '}
+
+                  <Icon name='chevron left' /> Return to Information
                 </button>
 
                 {address.valid &&
@@ -1692,8 +1691,8 @@ class Checkout extends Component {
                   </>
                 ) : null}
 
-                {this.state.customerToken != null &&
-                  this.state.checkout_settings.is_wallet == false ? (
+                {this.state.customerToken !== null &&
+                  this.state.checkout_settings.is_wallet === false ? (
                   <>
                     <div className='payment-method'>
                       {this.state.paymentMethods.length
@@ -1723,8 +1722,8 @@ class Checkout extends Component {
 
                 {/* User Without Money ////////////////////////////////////////////////////////////////////// */}
 
-                {this.state.customerToken != null &&
-                  this.state.showWallet == false ? (
+                {this.state.customerToken !== null &&
+                  this.state.showWallet === false ? (
                   <>
                     <div className='payment-method'>
                       {this.state.paymentMethods.length
@@ -1782,7 +1781,7 @@ class Checkout extends Component {
                       label='Use a different billing address'
                     />
                   </div>
-                  {this.state.billingAddress == 'billingAddress' ? (
+                  {this.state.billingAddress === 'billingAddress' ? (
                     <div>
                       <BillingAddressForm
                         setBillingAddress={this.setBillingAddress}
@@ -1797,11 +1796,11 @@ class Checkout extends Component {
                   className='return-to-info'
                   onClick={() => this.setState({ activeIndex: 1 })}
                 >
-                  {' '}
-                  <Icon name='chevron left' /> Return to Shipping{' '}
+
+                  <Icon name='chevron left' /> Return to Shipping
                 </button>
                 {/* <button className="return-to-info" value='0' onClick={this.handleRangeChange}> <Icon name="chevron left" /> Return to Information</button> */}
-                {this.state.billingAddress == 'billingAddress' ? (
+                {this.state.billingAddress === 'billingAddress' ? (
                   this.state.billingAddressDetail.address ? (
                     this.state.billingAddressDetail.address.valid &&
                       this.state.billingAddressDetail.city.valid &&
@@ -1858,21 +1857,21 @@ class Checkout extends Component {
               <div className='checkout__tab-button'>
                 <button>
                   <a href='/cart'>Cart</a>
-                </button>{' '}
+                </button>
                 -
                 <button
                   value='0'
-                  className={activeIndex == 0 ? 'active' : null}
+                  className={activeIndex === 0 ? 'active' : null}
                   onClick={this.handleRangeChange}
                 >
                   Information
-                </button>{' '}
+                </button>
                 -
-                <button className={activeIndex == 1 ? 'active' : null}>
+                <button className={activeIndex === 1 ? 'active' : null}>
                   Shipping
-                </button>{' '}
+                </button>
                 -
-                <button className={activeIndex == 2 ? 'active' : null}>
+                <button className={activeIndex === 2 ? 'active' : null}>
                   Payment
                 </button>
               </div>
@@ -1901,64 +1900,64 @@ class Checkout extends Component {
                     </div>
                   )}
                   {cartDetail.list_items.map((lineItem, indexi) => {
-                    {
-                      return (
-                        // 'vendor-splitting' class for spliting
-                        <div className='' key={indexi}>
-                          {/* <h5 className="vendor-title">Vendor: {lineItem.vendor}</h5> */}
-                          {lineItem.items.map((item, indexj) => {
-                            return (
-                              <>
-                                <div key={indexj} className='cart__lineitem'>
-                                  <div className='cart__lineitem-img'>
-                                    {/* <div className="item-quantity">{item.quantity}</div> */}
-                                    <img
-                                      src={
-                                        item.image ? item.image : defaultImage
-                                      }
-                                      alt={item.product}
-                                    />
-                                    <span className='line-item-quant'>
-                                      {' '}
-                                      {item.quantity}{' '}
-                                    </span>
+
+                    return (
+                      // 'vendor-splitting' class for spliting
+                      <div className='' key={indexi}>
+                        {/* <h5 className="vendor-title">Vendor: {lineItem.vendor}</h5> */}
+                        {lineItem.items.map((item, indexj) => {
+                          return (
+                            <>
+                              <div key={indexj} className='cart__lineitem'>
+                                <div className='cart__lineitem-img'>
+                                  {/* <div className="item-quantity">{item.quantity}</div> */}
+                                  <img
+                                    src={
+                                      item.image ? item.image : defaultImage
+                                    }
+                                    alt={item.product}
+                                  />
+                                  <span className='line-item-quant'>
+
+                                    {item.quantity}
+                                  </span>
+                                </div>
+                                <div className='cart__lineitem-info-wrap'>
+                                  <div className='cart__lineitem-info'>
+                                    <h5>{item.product}</h5>
+                                    <p>{item.variant_name}</p>
                                   </div>
-                                  <div className='cart__lineitem-info-wrap'>
-                                    <div className='cart__lineitem-info'>
-                                      <h5>{item.product}</h5>
-                                      <p>{item.variant_name}</p>
-                                    </div>
-                                    <div className='cart__lineitem-price'>
-                                      {item.price * item.quantity !=
-                                        item.total_price ? (
-                                        <h5 className='compare-at-price'>
-                                          QAR {item.price * item.quantity}
-                                        </h5>
-                                      ) : null}
-                                      <h5
-                                        className={
-                                          item.price * item.quantity !=
-                                            item.total_price
-                                            ? 'discounted-price'
-                                            : ''
-                                        }
-                                      >
-                                        QAR {item.total_price}
+                                  <div className='cart__lineitem-price'>
+                                    {item.price * item.quantity !==
+                                      item.total_price ? (
+                                      <h5 className='compare-at-price'>
+                                        QAR {item.price * item.quantity}
                                       </h5>
-                                      {/* <p>Shipping: {item.shipping}</p> */}
-                                    </div>
+                                    ) : null}
+                                    <h5
+                                      className={
+                                        item.price * item.quantity !==
+                                          item.total_price
+                                          ? 'discounted-price'
+                                          : ''
+                                      }
+                                    >
+                                      QAR {item.total_price}
+                                    </h5>
+                                    {/* <p>Shipping: {item.shipping}</p> */}
                                   </div>
                                 </div>
-                              </>
-                            )
-                          })}
-                        </div>
-                      )
-                    }
+                              </div>
+                            </>
+                          )
+                        })}
+                      </div>
+                    )
+
                   })}
                 </div>
                 {
-                  // this.state.discountApplied === true ?
+                  // this.state.discountApplied ===true ?
                   //   <Message color='green'>
                   //     <Message.Header>Discount code applied</Message.Header>
                   //   </Message>
@@ -1968,7 +1967,7 @@ class Checkout extends Component {
                     {/* Promo Discounts Conditions ////////////////////////////////////////////////// */}
 
                     <div>
-                      {this.state.checkout_settings?.promo_code ==
+                      {this.state.checkout_settings?.promo_code ===
                         'required' ? (
                         <>
                           <div className='cart__discountCode'>
@@ -1987,7 +1986,7 @@ class Checkout extends Component {
                             </button>
                           </div>
                         </>
-                      ) : this.state.checkout_settings.promo_code ==
+                      ) : this.state.checkout_settings.promo_code ===
                         'optional' ? (
                         <>
                           <div className='cart__discountCode'>
@@ -2021,7 +2020,7 @@ class Checkout extends Component {
                                 <p className='chips'>
                                   {promo}
                                   <span
-                                    class='closebtn'
+                                    className='closebtn'
                                     onClick={() =>
                                       this.removeDiscountCode(promo)
                                     }
@@ -2068,7 +2067,7 @@ class Checkout extends Component {
                   <p>
                     <h4>Total</h4>
                     <h2>
-                      <small>QAR</small>{' '}
+                      <small>QAR</small>
                       {parseInt(cartDetail.total_price.total) +
                         parseInt(this.state.totalShipping)}
                     </h2>

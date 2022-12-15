@@ -3,7 +3,6 @@ import { Accordion, Form, Menu, Input } from 'semantic-ui-react'
 import Axios from 'axios'
 import debounce from 'lodash/debounce';
 
-
 class Filters extends Component {
 
   constructor(props) {
@@ -42,9 +41,8 @@ class Filters extends Component {
     }
   }
 
-
   componentDidUpdate() {
-    if (this.props.handleToSearch != this.state.handle) {
+    if (this.props.handleToSearch !== this.state.handle) {
       this.setState({
         handle: this.props.handleToSearch,
         brandFilterTags: [],
@@ -83,12 +81,12 @@ class Filters extends Component {
       })
     }
     let body
-    if (this.state.productsFrom == 'brand_handle') {
+    if (this.state.productsFrom === 'brand_handle') {
       body = {
         brand_handle: this.state.handle
       }
     }
-    else if (this.state.productsFrom == 'category_handle') {
+    else if (this.state.productsFrom === 'category_handle') {
       body = {
         category_handle: this.state.handle
       }
@@ -316,12 +314,12 @@ class Filters extends Component {
     let tagRemove = tagFilters.indexOf(value)
     let product_optionRemove = product_optionFilters.indexOf(value)
 
-    if (target.getAttribute('name') == 'promotion') {
+    if (target.getAttribute('name') === 'promotion') {
       if (discountFilters.indexOf(value) > -1) {
         discountFilters.splice(toRemove, 1)
         this.setState({ discountFilterTags: discountFilters })
       }
-      else if (discountFilters.indexOf(value) == -1 && target.checked) {
+      else if (discountFilters.indexOf(value) === -1 && target.checked) {
         target.checked = false
       }
       else {
@@ -329,12 +327,12 @@ class Filters extends Component {
         this.setState({ discountFilterTags: discountFilters })
       }
     }
-    if (target.getAttribute('name') == 'brands') {
+    if (target.getAttribute('name') === 'brands') {
       if (brandFilters.indexOf(value) > -1) {
         brandFilters.splice(toRemove, 1)
         this.setState({ brandFilterTags: brandFilters })
       }
-      else if (brandFilters.indexOf(value) == -1 && target.checked) {
+      else if (brandFilters.indexOf(value) === -1 && target.checked) {
         target.checked = false
       }
       else {
@@ -343,14 +341,13 @@ class Filters extends Component {
       }
     }
 
-
-    if (target.getAttribute('name') == 'tags') {
+    if (target.getAttribute('name') === 'tags') {
 
       if (tagFilters.indexOf(value) > -1) {
         tagFilters.splice(tagRemove, 1)
         this.setState({ tagFilterTags: tagFilters })
       }
-      else if (tagFilters.indexOf(value) == -1 && target.checked) {
+      else if (tagFilters.indexOf(value) === -1 && target.checked) {
         target.checked = false
       }
       else {
@@ -359,12 +356,12 @@ class Filters extends Component {
       }
     }
 
-    if (target.getAttribute('name') == 'product_options') {
+    if (target.getAttribute('name') === 'product_options') {
       if (product_optionFilters.indexOf(value) > -1) {
         product_optionFilters.splice(product_optionRemove, 1)
         this.setState({ product_optionTags: product_optionFilters })
       }
-      else if (product_optionFilters.indexOf(value) == -1 && target.checked) {
+      else if (product_optionFilters.indexOf(value) === -1 && target.checked) {
         target.checked = false
       }
       else {
@@ -373,14 +370,13 @@ class Filters extends Component {
       }
     }
 
-
-    if (target.getAttribute('name') == 'price') {
+    if (target.getAttribute('name') === 'price') {
       if (priceFilters.indexOf(value) > -1) {
         let toRemove = priceFilters.indexOf(value)
         priceFilters.splice(toRemove, 1)
         this.setState({ priceFilterTags: priceFilters })
       }
-      else if (priceFilters.indexOf(value) == -1 && target.checked) {
+      else if (priceFilters.indexOf(value) === -1 && target.checked) {
         target.checked = false
       }
       else {
@@ -389,13 +385,13 @@ class Filters extends Component {
       }
 
     }
-    if (target.getAttribute('name') == 'collections') {
+    if (target.getAttribute('name') === 'collections') {
       if (collectionFilters.indexOf(value) > -1) {
         let toRemove = collectionFilters.indexOf(value)
         collectionFilters.splice(toRemove, 1)
         this.setState({ collectionFilterTags: collectionFilters })
       }
-      else if (collectionFilters.indexOf(value) == -1 && target.checked) {
+      else if (collectionFilters.indexOf(value) === -1 && target.checked) {
         target.checked = false
       }
       else {

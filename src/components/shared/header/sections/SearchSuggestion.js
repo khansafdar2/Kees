@@ -48,7 +48,7 @@ function SearchExampleStandard(props) {
 
   const [category, setCategory] = useState("");
   const { loading, results, value } = state;
-  if (category != props.cat) {
+  if (category !== props?.cat) {
     setCategory(props.cat);
   }
 
@@ -65,13 +65,13 @@ function SearchExampleStandard(props) {
   // }
 
   const handleKeyPress = (e) => {
-    if (e.key == "Enter") {
+    if (e.key === "Enter") {
       category
         ? location.push("/search/" + searchQuery + "+" + category)
         : location.push("/search/" + searchQuery);
 
-        document.getElementById("search_btn").click()
-          }
+      document.getElementById("search_btn").click()
+    }
   };
 
   const timeoutRef = React.useRef();
@@ -158,7 +158,7 @@ function SearchExampleStandard(props) {
           }
         >
           <Button
-          id="search_btn"
+            id="search_btn"
             className="search-btn"
             loading={loading}
             icon

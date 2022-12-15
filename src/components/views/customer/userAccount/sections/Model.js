@@ -1,10 +1,10 @@
-import React, { Component, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Button, Header, Modal, Form, Message } from 'semantic-ui-react'
 // import { } from '../services/context'
 import Axios from 'axios'
 import {
-  countryOptions,
-  cityOptions,
+  // countryOptions,
+  // cityOptions,
   validatePhoneNumber,
 } from '../../../../../services/context'
 
@@ -49,8 +49,8 @@ function Model(props) {
   const getCities = (countryId) => {
     Axios.get(
       process.env.REACT_APP_BACKEND_HOST +
-        '/order/cities?country_id=' +
-        countryId
+      '/order/cities?country_id=' +
+      countryId
     ).then((response) => {
       setCities(response.data)
     })
@@ -84,15 +84,15 @@ function Model(props) {
       phone &&
       city &&
       country &&
-      phoneError == false
+      phoneError === false
     ) {
       setformError(false)
       //
 
       Axios.put(
         process.env.REACT_APP_BACKEND_HOST +
-          '/storefront/account?token=' +
-          sessionStorage.getItem('kees-customer-token'),
+        '/storefront/account?token=' +
+        sessionStorage.getItem('kees-customer-token'),
         body
       )
 

@@ -1,10 +1,10 @@
+// import Axios from 'axios'
 import React from 'react';
 import { Icon, Image } from 'semantic-ui-react'
 // /*images*/
 // import keesLogo from '../assets/img/keesLogo.png';
 import location from '../../../../assets/svg/location.svg';
 // import megamenuImage from '../../../../assets/img/megamenuimage2.png';
-import Axios from 'axios'
 import { Link } from "react-router-dom"
 
 class Navbar extends React.Component {
@@ -149,23 +149,17 @@ class Navbar extends React.Component {
                                     </ul>
                                     : null
                                 }
-
-
-
                               </li>
                             )}
                           </ul>
                           : null
                       }
-
-
-
-
                     </li>
                   )}
                 </ul>
               </div>
             </div>
+
             {/* <li>
                   <Link to="/brands">Brands</Link>
                 </li>
@@ -188,13 +182,11 @@ class Navbar extends React.Component {
                   <Link to="/collection/under-99">Under 99</Link>
                 </li> */}
 
-
             <div className="track-order k-row flex--1">
               {header?.navigation_bar?.show_track_order ?
-                <Link to="/trackyourorder" > <Image src={location} alt="Location"/>Track your order </Link>
+                <Link to="/trackyourorder" > <Image src={location} alt="Location" />Track your order </Link>
                 : null
               }
-
             </div>
           </div>
         </div>

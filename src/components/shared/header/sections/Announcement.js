@@ -1,10 +1,10 @@
+// import axios from 'axios';
 import React from 'react';
 import { Dropdown } from 'semantic-ui-react'
 import phoneIcon from '../../../../assets/svg/phoneIcon.svg';
 // import arrowDown from './assets/svg/arrowDown.svg';
 // import flag from './assets/img/flag.png';
 import { isMobile } from "react-device-detect";
-import axios from 'axios';
 
 class Announcement extends React.Component {
 
@@ -45,7 +45,7 @@ class Announcement extends React.Component {
         if (document.querySelector('#google_translate_element select').value) {
           this.setState({ selected_lang: seletedValue })
 
-          if (seletedValue == 'ar') {
+          if (seletedValue === 'ar') {
             document.querySelector('html').setAttribute('dir', 'rtl')
           }
           else {
@@ -66,7 +66,7 @@ class Announcement extends React.Component {
 
   langName = (lang) => {
 
-    if (lang.value == this.state.selected_lang) {
+    if (lang.value === this.state.selected_lang) {
       this.setState({ langText: lang.text })
     }
   }
@@ -82,13 +82,13 @@ class Announcement extends React.Component {
 
     let langDropdown = document.querySelector('#google_translate_element select')
     // console.log(target.value)
-    if (langDropdown.value != target.value) {
+    if (langDropdown.value !== target.value) {
       langDropdown.value = target.value
       var event = new Event('change')
       langDropdown.dispatchEvent(event)
       langDropdown.dispatchEvent(event)
 
-      if (target.value == 'ar') {
+      if (target.value === 'ar') {
         document.querySelector('html').setAttribute('dir', 'rtl')
       }
       else {

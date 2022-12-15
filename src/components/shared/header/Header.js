@@ -1,6 +1,6 @@
+// import axios from 'axios';
 import React from 'react';
 import { Dropdown } from 'semantic-ui-react'
-import axios from 'axios';
 /*images*/
 // import keesLogo from '../assets/img/keesLogo.png';
 import userIcon from '../../../assets/svg/userIcon.svg';
@@ -102,7 +102,7 @@ class Header extends React.Component {
     return (
       <div className="nav-header">
         <Helmet>
-        <meta name="google-site-verification" content="WdBSUpluU8GT9GxNl32laaLDt9FSu78Bul1alxqhenY" />
+          <meta name="google-site-verification" content="WdBSUpluU8GT9GxNl32laaLDt9FSu78Bul1alxqhenY" />
         </Helmet>
         <div className="container-xl">
           <div className="k-row">

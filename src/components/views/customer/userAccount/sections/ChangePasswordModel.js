@@ -10,16 +10,13 @@ function ChangePasswordModel(props) {
   const [formErrorContent, setFormErrorContent] = React.useState('')
   const [oldPass, setOldPass] = React.useState('')
   const [newPass, setNewPass] = React.useState('')
-  
+
 
   const handleChange = (e) => {
-    if(e.target.name == 'old-pass' )
-    {
+    if (e.target.name === 'old-pass') {
       setOldPass(e.target.value)
     }
-    if(e.target.name == 'new-pass' )
-    {
-
+    if (e.target.name === 'new-pass') {
       setNewPass(e.target.value)
     }
   }
@@ -27,19 +24,19 @@ function ChangePasswordModel(props) {
   const saveNewPassword = () => {
     // debugger
     let body = {
-      old_password : oldPass,
-      new_password : newPass
+      old_password: oldPass,
+      new_password: newPass
     }
-    Axios.put(process.env.REACT_APP_BACKEND_HOST + '/storefront/account?token='+props.token, body)
-    .then( (response) => {
-      setPasswordChanged(true)
-      setFormError(false)
-    })
-    .catch( (err) => {
-      // debugger
-      setFormError(true)
-      setFormErrorContent(err.response.data.detail)
-    }) 
+    Axios.put(process.env.REACT_APP_BACKEND_HOST + '/storefront/account?token=' + props.token, body)
+      .then((response) => {
+        setPasswordChanged(true)
+        setFormError(false)
+      })
+      .catch((err) => {
+        // debugger
+        setFormError(true)
+        setFormErrorContent(err.response.data.detail)
+      })
   }
 
   return (
@@ -53,7 +50,7 @@ function ChangePasswordModel(props) {
     >
       <Header content='Change Your Password' />
       <Modal.Content>
-        <Form  error={formError}>
+        <Form error={formError}>
           <Form.Field>
             <label>Old Password</label>
             <input type="password" name='old-pass' placeholder='' onChange={handleChange} />
@@ -68,15 +65,15 @@ function ChangePasswordModel(props) {
             content={formErrorContent}
           />
           {
-            passwordChanged ? 
+            passwordChanged ?
               <Message
-              info
-              content='password changed successfully'
+                info
+                content='password changed successfully'
               />
-            : null
+              : null
           }
-          
-          
+
+
         </Form>
       </Modal.Content>
       <Modal.Actions>

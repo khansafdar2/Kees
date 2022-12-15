@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Icon } from 'semantic-ui-react';
+import React from 'react';
+// import { Icon } from 'semantic-ui-react';
 import whatsappIcon from '../../../assets/svg/whatsappIcon.svg'
 
 import './whatsappButton.scss';
 
 const ScrollToTop = () => {
-    const [showTopBtn, setShowTopBtn] = useState(true);
+    let showTopBtn = true
+
+    // const [showTopBtn, setShowTopBtn] = useState(true);
     // useEffect(() => {
     //     window.addEventListener('scroll', () => {
     //         if (window.scrollY > 230) {
@@ -16,12 +18,12 @@ const ScrollToTop = () => {
     //     });
     // }, []);
 
-    const goToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-        });
-    };
+    // const goToTop = () => {
+    //     window.scrollTo({
+    //         top: 0,
+    //         behavior: 'smooth',
+    //     });
+    // };
 
     return (
         <>

@@ -12,7 +12,7 @@ export class CustomPage extends Component {
       handle: this.props.match.params.pageHandle,
       title: "",
       content: "",
-      seo:'',
+      seo: '',
       showLoader: true,
     };
   }
@@ -20,13 +20,13 @@ export class CustomPage extends Component {
     axios
       .get(
         process.env.REACT_APP_BACKEND_HOST +
-          "/storefront/page/" +
-          this.state.handle
+        "/storefront/page/" +
+        this.state.handle
       )
       .then((response) => {
         // console.log(response)
         this.setState({
-          seo:response.data,
+          seo: response.data,
           title: response.data.title,
           content: response.data.content,
           showLoader: false,
@@ -47,7 +47,7 @@ export class CustomPage extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.handle != this.props.match.params.pageHandle) {
+    if (this.state.handle !== this.props.match.params.pageHandle) {
       window.scrollTo(0, 0);
       this.setState(
         {
@@ -64,19 +64,19 @@ export class CustomPage extends Component {
     return (
       <div>
         <div className="Custom-page">
-        <Helmet>
-                <title>
-                  {this.state.seo.seo_title? (this.state.seo.seo_title + " | KEES"):(this.state.title ? (this.state.title + " | KEES"):("KEES | Best Online Shopping in Qatars"))}
-                </title>
-                <meta
-                  name="description"
-                  content={this.state.seo.seo_description}
-                />
-                <meta name="keyword" content={this.state.seo.seo_keywords} />
-              </Helmet>
+          <Helmet>
+            <title>
+              {this.state.seo.seo_title ? (this.state.seo.seo_title + " | KEES") : (this.state.title ? (this.state.title + " | KEES") : ("KEES | Best Online Shopping in Qatars"))}
+            </title>
+            <meta
+              name="description"
+              content={this.state.seo.seo_description}
+            />
+            <meta name="keyword" content={this.state.seo.seo_keywords} />
+          </Helmet>
           {this.state.title ? (
             <>
-              
+
               <div className="container Custom-page">
                 <div className="CustomPage-title">
                   <h1> {title}</h1>

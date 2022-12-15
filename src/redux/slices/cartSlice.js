@@ -9,7 +9,7 @@ export const cartSlice = createSlice({
     QAR: "QAR",
     cart:
       JSON.parse(localStorage.getItem("cart")) == null ||
-        JSON.parse(localStorage.getItem("cart")).length == 0
+        JSON.parse(localStorage.getItem("cart")).length === 0
         ? []
         : JSON.parse(localStorage.getItem("cart")).length >= 1
           ? JSON.parse(localStorage.getItem("cart"))
@@ -17,15 +17,16 @@ export const cartSlice = createSlice({
   },
   reducers: {
     Add_to_cart: (state, action) => {
+      // debugger
       // console.log('actions_add',action);
       // console.log("add_action", action.payload[0]);
       // debugger;
       let cart = state.cart;
       let variantFound = false;
       // console.log("cart-lengt", cart.length);
-      if (cart.length != 0 && cart[0] != null) {
+      if (cart.length !== 0 && cart[0] != null) {
         for (let i = 0; i < cart.length; i++) {
-          if (cart[i].varId == action.payload[0].detail.variantId) {
+          if (cart[i].varId === action.payload[0].detail.variantId) {
             let updateQuantity =
               parseInt(cart[i].detail.quantity) +
               parseInt(action.payload[0].detail.quantity);
@@ -63,7 +64,7 @@ export const cartSlice = createSlice({
       // debugger;
       for (let i = 0; i < cart.length; i++) {
         const lineItem = cart[i];
-        if (lineItem.varId == action.payload[0].varId) {
+        if (lineItem.varId === action.payload[0].varId) {
           // console.log("payload", action.payload[0].varId);
           cart.splice(i, 1);
         }
@@ -84,11 +85,11 @@ export const cartSlice = createSlice({
         // debugger;
         const lineitem = cart[i];
 
-        totalcount += parseInt(lineitem.detail.quantity);
+        totalcount += parseInt(lineitem?.detail?.quantity);
         // console.log("qw", parseInt(lineitem.detail.quantity));
         totalPrice +=
-          lineitem.detail.variantPrice.original_price *
-          lineitem.detail.quantity;
+          lineitem?.detail?.variantPrice?.original_price *
+          lineitem?.detail?.quantity;
       }
       // console.log("totalCount", totalcount);
       state.totalCount = totalcount;
@@ -98,7 +99,7 @@ export const cartSlice = createSlice({
     Update_incr_Qty: (state, action) => {
       let cart = state.cart;
       for (let i = 0; i < cart.length; i++) {
-        if (cart[i].varId == action.payload) {
+        if (cart[i].varId === action.payload) {
           let updateQuantity = parseInt(cart[i].detail.quantity) + 1;
           cart[i].detail.quantity = updateQuantity;
         }
@@ -109,7 +110,7 @@ export const cartSlice = createSlice({
       let cart = state.cart;
 
       for (let i = 0; i < cart.length; i++) {
-        if (cart[i].varId == action.payload) {
+        if (cart[i].varId === action.payload) {
           if (cart[i].detail.quantity > 1) {
             let updateQuantity = parseInt(cart[i].detail.quantity) - 1;
 
