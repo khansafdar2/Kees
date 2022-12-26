@@ -20,7 +20,8 @@ export function validateEmail(email) {
 export function validatePhoneNumber(inputtxt) {
   inputtxt = inputtxt.replace(/\s/g, '')
 
-  var phoneno = /^(\d{13}(\,\d{13}){0,2})$/
+  var phoneno = /^(\d{8}(\,\d{8}){0,2})$/
+  // debugger
   if (phoneno.test(inputtxt)) {
     return true
   } else {

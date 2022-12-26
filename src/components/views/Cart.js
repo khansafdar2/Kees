@@ -543,7 +543,7 @@ class Cart extends React.Component {
                   <span>{this.props?.cart?.totalprice}</span>
                 </h4>
                 <p>Shipping, and discounts will be calculated at checkout.</p>
-                <div className='k-row cart-action-btns'>
+                <div className='k-row cart-action-btns' style={{ justifyContent: 'flex-end', display: 'flex', flexDirection: 'row' }}>
                   {/* <button className="secondary-button">Continue Shipping</button>
                   <button className="secondary-button">Update Cart</button> */}
                   <div>

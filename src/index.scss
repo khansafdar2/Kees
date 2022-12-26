@@ -362,7 +362,7 @@ input.ui.input > input {
     padding: 20px 30px;
     background-color: white;
     z-index: 10000;
-    min-height: 600px;
+    min-height: 650px;
     img {
       width: 80%;
     }
@@ -4900,7 +4900,7 @@ div.customer-order-detail-wrapper {
 //   overflow-x: hidden;
 // }
 .cat-level-1 {
-  max-height: 400px;
+  // max-height: 400px;
   // overflow-y: scroll;
   // overflow-x: hidden;
 }

@@ -423,6 +423,7 @@ class Checkout extends Component {
     //   activeIndex: 1
     // })
     e.preventDefault()
+    let countryCode = '00974'
     let emailOrPhone = this.state.customerEmailPhone.value
     let firstName = this.state.firstName.value
     let lastName = this.state.lastName.value
@@ -461,7 +462,7 @@ class Checkout extends Component {
           shipping_address = {
             first_name: firstName,
             last_name: lastName,
-            phone: shippingPhoneno,
+            phone: countryCode.concat(shippingPhoneno),
             address: address,
             apartment: appartment,
             city: city,
