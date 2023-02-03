@@ -45,8 +45,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build-kees": "dotenv -e env/.env.production react-scripts build",
-    "build-kees-uat": "dotenv -e env/.env.staging react-scripts build"
+    "p": "serve -s build -l 3000",
+    "build-kees-production": "dotenv -e env/.env.production.kees react-scripts build",
+    "build-kees-staging": "dotenv -e env/.env.staging.kees react-scripts build"
   },
   "eslintConfig": {
     "extends": [
