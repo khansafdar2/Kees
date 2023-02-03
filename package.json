@@ -10,6 +10,7 @@
     "axios": "^0.21.4",
     "dompurify": "^2.3.1",
     "dotenv": "^10.0.0",
+    "dotenv-cli": "^7.0.0",
     "faker": "^5.5.3",
     "firebase": "^9.6.7",
     "html-react-parser": "^3.0.4",
@@ -43,7 +44,9 @@
     "start:staging": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build-kees": "dotenv -e env/.env.production react-scripts build",
+    "build-kees-uat": "dotenv -e env/.env.staging react-scripts build"
   },
   "eslintConfig": {
     "extends": [
