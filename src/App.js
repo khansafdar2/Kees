@@ -52,6 +52,7 @@ import WhatsappButton from "./components/shared/whatsappButton/whatsappButton";
 import Helmet from "react-helmet";
 import Blog from "./components/views/blog/Blog";
 import SingleBlog from "./components/views/blog/SingleBlog";
+import packageJson from "../package.json";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -78,7 +79,7 @@ class App extends React.Component {
 
   componentDidMount() {
     // console.log('REACT_APP_BACKEND_HOST', process.env.REACT_APP_BACKEND_HOST)
-
+    this.updateCaching();
     this.getHeader();
 
     if (sessionStorage.getItem("passwordMatched") === "true") {
@@ -126,6 +127,31 @@ class App extends React.Component {
       .catch((err) => {
         console.log("Error", err);
       });
+  }
+
+  //! Removing Cahce and LocalStorage
+  updateCaching() {
+    let version = localStorage.getItem("version");
+
+    if (version) {
+      if (version !== packageJson.version) {
+        if ("caches" in window) {
+          caches.keys().then((names) => {
+            // Delete all the cache files
+            names.forEach((name) => {
+              caches.delete(name);
+            });
+          });
+
+          //? Makes sure the page reloads. Changes are only visible after you refresh.
+          window.location.reload(true);
+        }
+
+        localStorage.clear();
+      }
+    } else {
+      localStorage.setItem("version", packageJson.version);
+    }
   }
 
   render() {

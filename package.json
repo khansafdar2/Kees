@@ -1,6 +1,6 @@
 {
   "name": "kees",
-  "version": "0.1.0",
+  "version": "3.9",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.2",

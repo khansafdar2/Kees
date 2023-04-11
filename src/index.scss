@@ -6143,3 +6143,38 @@ body.lang-ar {
 //     color: $primary-orange !important;
 //   }
 // }
+
+// Product Page Variants Selection Radio Buttons
+
+.radioBtnSelected {
+  padding: 5px;
+  background: $primary-orange;
+  color: $primary-black;
+  border: 0.5px solid $border-color;
+}
+.radioBtn {
+  padding: 5px;
+  // background: $primary-orange;
+  color: $primary-black;
+  border: 0.5px solid $border-color;
+}
+.ui.radio.checkbox {
+  input {
+    display: none !important;
+  }
+}
+
+.ui.checkbox .box:before,
+.ui.checkbox label:before {
+  display: none !important;
+}
+
+.ui.radio.checkbox input:checked ~ .box:after,
+.ui.radio.checkbox input:checked ~ label:after {
+  display: none !important;
+}
+
+.ui.checkbox .box,
+.ui.checkbox label {
+  padding: 5px !important;
+}
