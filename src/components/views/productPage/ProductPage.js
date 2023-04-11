@@ -338,7 +338,25 @@ class ProductPage extends React.Component {
   // handleChange = (e, { value }) => this.setState({ value });
 
   handleChange = (e, { value }) => {
+    // debugger;
     this.setState({ selectedOption: value });
+    let variant = this.state.product.variants.find(
+      (varinat) => varinat.option1 === value
+    );
+    // debugger;
+    if (variant) {
+      this.setState({ selected_variant: variant });
+    }
+
+    let flag = this.state.product.variants.find(
+      (varinat) => varinat.inventory_quantity > 0
+    );
+    // debugger;
+    if (!flag) {
+      this.setState({
+        showSoldout: true,
+      });
+    }
   };
 
   changeSelectedVariant = (ele) => {
