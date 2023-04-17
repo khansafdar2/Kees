@@ -6159,9 +6159,9 @@ body.lang-ar {
   border: 0.5px solid $border-color;
 }
 .ui.radio.checkbox {
-  input {
-    display: none !important;
-  }
+  // input {
+  //   display: none !important;
+  // }
 }
 
 .ui.checkbox .box:before,
@@ -6178,3 +6178,7 @@ body.lang-ar {
 .ui.checkbox label {
   padding: 5px !important;
 }
+
+// input[type="radio"] {
+//   -webkit-appearance: radio;
+// }

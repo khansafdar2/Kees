@@ -403,7 +403,7 @@ class Checkout extends Component {
 
   handleRadioChange = (e, data) => {
     this.setState({
-      billingAddress: data.value,
+      billingAddress: e.target.value || data.value,
     });
   };
 
@@ -657,7 +657,7 @@ class Checkout extends Component {
   handlePaymentRadioChange = (e, data) => {
     this.setState({
       payByWallet: false,
-      selectedPaymentMethod: data.value,
+      selectedPaymentMethod: e.target.value || data.value,
     });
   };
 
@@ -1579,18 +1579,47 @@ class Checkout extends Component {
                             // )
                             return (
                               <>
-                                <div key={index} className="input-radio">
+                                {/* <div key={index} className="input-radio">
                                   <Radio
                                     name="payment-method"
+                                    value={pMethod.title}
+                                    label={pMethod.title}
                                     checked={
                                       this.state.selectedPaymentMethod ===
                                       pMethod.title
                                     }
+                                    onChange={this.handlePaymentRadioChange}
+                                  />
+                                </div> */}
+
+                                <div
+                                  key={index}
+                                  className="input-radio"
+                                  style={{
+                                    display: "flex",
+                                    gap: "10px",
+                                    justifyContent: "flex-start",
+                                  }}
+                                >
+                                  <input
+                                    type="radio"
+                                    name="payment-method"
                                     value={pMethod.title}
                                     onChange={this.handlePaymentRadioChange}
-                                    label={pMethod.title}
+                                    checked={
+                                      this.state.selectedPaymentMethod ===
+                                      pMethod.title
+                                    }
                                   />
+                                  <label htmlFor={pMethod.title}>
+                                    {pMethod.title}
+                                  </label>
                                 </div>
+                                {pMethod.shipping_amount ? (
+                                  <label>
+                                    <span>{pMethod.shipping_amount} QAR</span>
+                                  </label>
+                                ) : null}
                               </>
                             );
                           })
@@ -1759,7 +1788,7 @@ class Checkout extends Component {
                 <div className="billing-address">
                   <div className="input-radio">
                     <div className="radio-wrapper">
-                      <Radio
+                      {/* <Radio
                         value="shippingAddress"
                         checked={
                           this.state.billingAddress === "shippingAddress"
@@ -1768,17 +1797,57 @@ class Checkout extends Component {
                         name="billingAddress"
                         label="Same as shipping address"
                         defaultChecked
-                      />
+                      /> */}
+
+                      <div
+                        className="input-radio"
+                        style={{
+                          padding: 0,
+                          gap: "10px",
+                          display: "flex",
+                          justifyContent: "flex-start",
+                        }}
+                      >
+                        <input
+                          type="radio"
+                          name="billingAddress"
+                          value="shippingAddress"
+                          onChange={this.handleRadioChange}
+                          checked={
+                            this.state.billingAddress === "shippingAddress"
+                          }
+                        />
+                        <label>Same as shipping address</label>
+                      </div>
                     </div>
                   </div>
                   <div className="input-radio">
-                    <Radio
+                    {/* <Radio
                       value="billingAddress"
                       checked={this.state.billingAddress === "billingAddress"}
                       onChange={this.handleRadioChange}
                       name="billingAddress"
                       label="Use a different billing address"
-                    />
+                    /> */}
+
+                    <div
+                      className="input-radio"
+                      style={{
+                        padding: 0,
+                        gap: "10px",
+                        display: "flex",
+                        justifyContent: "flex-start",
+                      }}
+                    >
+                      <input
+                        type="radio"
+                        name="billingAddress"
+                        value="billingAddress"
+                        onChange={this.handleRadioChange}
+                        checked={this.state.billingAddress === "billingAddress"}
+                      />
+                      <label>Use a different billing address</label>
+                    </div>
                   </div>
                   {this.state.billingAddress === "billingAddress" ? (
                     <div>
