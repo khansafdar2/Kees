@@ -30,7 +30,7 @@
   <title>KEES | Best Online Shopping in Qatar</title>
 
   <script>
-    console.log("v-4");
+    console.log("v-4.1");
   </script>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -123,6 +123,22 @@
 
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
+
+  <!-- Import XML file -->
+  <script src="./sitemap.xml" id="SiteMap"></script>
+  <script src="./images_sitemap.xml" id="imagesSiteMap"></script>
+
+  <!-- Use imported XML data -->
+  <script>
+    // Access imported XML data
+    var siteMapXML = document.getElementById("SiteMap").innerHTML;
+      // console.log("siteMapXML ---->", siteMapXML);
+  </script>
+  <script>
+    // Access imported XML data
+    var imgaesSiteMapXML = document.getElementById("imagesSiteMap").innerHTML;
+      // console.log("imgaesSiteMapXML ---->", imgaesSiteMapXML);
+  </script>
 </body>
 
 </html>
