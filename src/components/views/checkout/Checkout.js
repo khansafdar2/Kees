@@ -218,7 +218,12 @@ class Checkout extends Component {
         city: { valid: true, value: customerInfo.shipping_address.city },
         country: { valid: true, value: customerInfo.shipping_address.country },
         customerEmailPhone: { valid: true, value: customerEmailPhone },
-        phoneNo: { valid: true, value: customerInfo.shipping_address.phone },
+        phoneNo: {
+          valid: true,
+          value: customerInfo.shipping_address.phone.includes("00974")
+            ? customerInfo.shipping_address.phone.slice(5)
+            : customerInfo.shipping_address.phone,
+        },
         postalCode: {
           valid: true,
           value: customerInfo.shipping_address.postal_code,
